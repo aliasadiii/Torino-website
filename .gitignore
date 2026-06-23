@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+**/node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -20,9 +21,6 @@
 # production
 /build
 
-# misc
-.DS_Store
-*.pem
 
 # debug
 npm-debug.log*
@@ -32,6 +30,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+.env.local
+.env.*.local
 
 # vercel
 .vercel
@@ -39,3 +39,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+
+# Misc
+*.pem
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Key files (important for security)
+*.pub
+id_ed25519
+id_rsa
