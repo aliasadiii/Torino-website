@@ -1,0 +1,42 @@
+@font-face {
+    font-family: Kalameh;
+    font-style: normal;
+    font-weight: 100;
+    src: url("../assets/Fonts/Kalameh\(FaNum\)-Thin.ttf") format("truetype");
+}
+@font-face {
+    font-family: Kalameh;
+    font-style: normal;
+    font-weight: 150;
+    src: url("../assets/Fonts/Kalameh\(FaNum\)-Light.ttf") format("truetype");
+}
+@font-face {
+    font-family: Kalameh;
+    font-style: normal;
+    font-weight: 200;
+    src: url("../assets/Fonts/Kalameh\(FaNum\)-Regular.ttf") format("truetype");
+}
+@font-face {
+    font-family: Kalameh;
+    font-style: normal;
+    font-weight: 300;
+    src: url("../assets/Fonts/Kalameh\(FaNum\)-Medium.ttf") format("truetype");
+}
+@font-face {
+    font-family: Kalameh;
+    font-style: normal;
+    font-weight: 400;
+    src: url("../assets/Fonts/Kalameh\(FaNum\)-SemiBold.ttf") format("truetype");
+}
+@font-face {
+    font-family: Kalameh;
+    font-style: normal;
+    font-weight: 500;
+    src: url("../assets/Fonts/Kalameh\(FaNum\)-Bold.ttf") format("truetype");
+}
+@font-face {
+    font-family: Kalameh;
+    font-style: normal;
+    font-weight: 600;
+    src: url("../assets/Fonts/Kalameh\(FaNum\)-ExtraBold.ttf") format("truetype");
+}
