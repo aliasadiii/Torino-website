@@ -84,6 +84,20 @@
   transition: opacity 0.3s ease;
 }
 
+.userBtn {
+  font-size: 14px;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #28a745;
+}
+
+.userBtn img {
+  width: 16px;
+  height: 16px;
+}
+
 @media (min-width: 800px) {
   .hamburger {
     display: none;
@@ -105,6 +119,7 @@
 
   .navLinks {
     position: static;
+    z-index: 0;
     height: 100%;
     flex-direction: row;
     display: flex;
@@ -150,5 +165,12 @@
 
   .overlay {
     display: none;
+  }
+  .userBtn {
+    font-size: 18px;
+  }
+  .userBtn img {
+    width: 24px;
+    height: 24px;
   }
 }

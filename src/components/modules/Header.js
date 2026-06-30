@@ -1,17 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { use, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+
+import AuthModal from "../templates/AuthModal";
+import SendOtpForm from "./SendOtpForm";
+import CheckOtpForm from "./CheckOtpForm";
 
 import styles from "@/styles/Header.module.css";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [step, setStep] = useState("one");
+  const [phone, setPhone] = useState("");
+  const router = useRouter();
 
+  //check for token
+  const { data } = useQuery({
+    queryKey: ["auth"],
+    queryFn: () => fetch("/api/auth/check-me").then((res) => res.json()),
+  });
+  const isLoggedIn = data?.isLoggedIn ?? false;
+  const user = data?.user ?? {};
+
+  //opens hamburger menu
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  //opens login modal
+  const loginHandler = () => {
+    router.push("?modal=login");
+  };
+
   return (
     <header className={styles.header}>
       <nav className={styles.navbar}>
@@ -65,23 +89,43 @@ function Header() {
           </li>
         </ul>
         <div className={styles.authButton}>
-          <button className={styles.mobileLoginBtn}>
-            <Image
-              src="/icons/signInButton.svg"
-              width={40}
-              height={40}
-              alt="login"
-            />
-          </button>
-          <button className={styles.loginBtn}>
-            <Image
-              src="/icons/profile.svg"
-              width={24}
-              height={24}
-              alt="login"
-            />
-            <span>ورود | ثبت نام</span>
-          </button>
+          {isLoggedIn ? (
+            <div className={styles.userBtn}>
+              <Image
+                src="/icons/profile.svg"
+                width={24}
+                height={24}
+                alt="login"
+              />
+              <p>{user?.name || user?.mobile}</p>
+              <Image
+                src="/icons/arrow-down.svg"
+                width={24}
+                height={24}
+                alt="arrow-down"
+              />
+            </div>
+          ) : (
+            <>
+              <button className={styles.mobileLoginBtn} onClick={loginHandler}>
+                <Image
+                  src="/icons/signInButton.svg"
+                  width={40}
+                  height={40}
+                  alt="login"
+                />
+              </button>
+              <button className={styles.loginBtn} onClick={loginHandler}>
+                <Image
+                  src="/icons/profile.svg"
+                  width={24}
+                  height={24}
+                  alt="login"
+                />
+                <span>ورود | ثبت نام</span>
+              </button>
+            </>
+          )}
         </div>
       </nav>
       <div className={styles.heroCover}>
@@ -93,6 +137,13 @@ function Header() {
         />
       </div>
       {isOpen && <div className={styles.overlay} onClick={toggleMenu}></div>}
+
+      <AuthModal>
+        {step === "one" && (
+          <SendOtpForm setStep={setStep} setPhone={setPhone} />
+        )}
+        {step === "two" && <CheckOtpForm setStep={setStep} phone={phone} />}
+      </AuthModal>
     </header>
   );
 }

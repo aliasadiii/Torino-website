@@ -1,3 +1,5 @@
+import QueryProvider from "@/providers/QueryProvider";
+
 import Header from "@/components/modules/Header";
 import Footer from "@/components/modules/Footer";
 
@@ -13,9 +15,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <QueryProvider>
+          <Header />
+          {children}
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   );
