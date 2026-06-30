@@ -1,6 +1,6 @@
 import CheckoutPage from "@/components/templates/CheckoutPage";
 
-function Checkout() {
+async function Checkout() {
   return <CheckoutPage />;
 }
 

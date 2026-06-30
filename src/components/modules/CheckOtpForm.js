@@ -3,7 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import OTPInput from "react-otp-input";
 import { checkOtp } from "@/services/auth";
@@ -11,10 +11,12 @@ import { checkOtp } from "@/services/auth";
 import styles from "@/styles/LoginModal.module.css";
 
 function CheckOtpForm({ setStep, phone }) {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState("");
-  const router = useRouter();
-  const queryClient = useQueryClient();
 
   //check otp process
   const checkOtpMutation = useMutation({
@@ -22,7 +24,7 @@ function CheckOtpForm({ setStep, phone }) {
 
     onSuccess: async (data) => {
       setOtpError("");
-
+      setStep("one");
       const { accessToken, refreshToken, user } = data.res.data;
 
       //setting token in cookie
@@ -37,8 +39,7 @@ function CheckOtpForm({ setStep, phone }) {
           isLoggedIn: true,
           user,
         });
-        router.replace(window.location.pathname);
-        router.refresh();
+        router.replace(pathname);
       } else setOtpError("لطفا دوباره تلاش کنید");
     },
 

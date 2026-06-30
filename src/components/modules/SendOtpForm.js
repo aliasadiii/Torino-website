@@ -1,6 +1,6 @@
 "use client";
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/schema/form";
@@ -10,6 +10,7 @@ import { sendOtp } from "@/services/auth";
 
 function SendOtpForm({ setStep, setPhone }) {
   const router = useRouter();
+  const pathname = usePathname();
   const {
     register,
     handleSubmit,
@@ -21,7 +22,9 @@ function SendOtpForm({ setStep, setPhone }) {
 
   //close login
   const closeModal = (event) => {
-    if (event.target === event.currentTarget) router.push("?");
+    if (event.target === event.currentTarget) {
+      router.replace(pathname);
+    }
   };
 
   //login process

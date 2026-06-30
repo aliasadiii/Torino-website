@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   const { accessToken, refreshToken } = await req.json();
-  console.log(accessToken, refreshToken);
   //set tokens in cookie
   const cookieStore = await cookies();
   cookieStore.set("accessToken", accessToken, {

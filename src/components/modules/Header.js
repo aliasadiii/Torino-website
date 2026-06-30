@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -14,16 +14,19 @@ import CheckOtpForm from "./CheckOtpForm";
 import styles from "@/styles/Header.module.css";
 
 function Header() {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+  // const pathname = usePathname();
+  // const searchParams = useSearchParams();
+
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState("one");
   const [phone, setPhone] = useState("");
   const [showOption, setShowOption] = useState(false);
   const dropdownRef = useRef(null);
-  const router = useRouter();
-  const queryClient = useQueryClient();
 
   //check for token
-  const { data } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: ["auth"],
     queryFn: () => fetch("/api/auth/check-me").then((res) => res.json()),
   });
@@ -40,6 +43,14 @@ function Header() {
     router.push("?modal=login");
   };
 
+  //clear searchparams if isLoggedIn
+  // useEffect(() => {
+  //   if (isLoggedIn && searchParams.get("modal") === "login") {
+  //     router.replace(pathname);
+  //   }
+  // }, [isLoggedIn, searchParams, pathname, router]);
+
+  //closing drop-down
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -50,10 +61,15 @@ function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  //log-out function
   const logoutHandler = async () => {
     const res = await axios.post("/api/auth/logout");
     if (res.data.status === "success") {
-      queryClient.invalidateQueries(["auth"]);
+      setShowOption((showOption) => !showOption);
+      queryClient.setQueryData(["auth"], {
+        isLoggedIn: false,
+        user: null,
+      });
     }
   };
 
@@ -114,7 +130,11 @@ function Header() {
             <div className={styles.userContainer} ref={dropdownRef}>
               <div
                 className={styles.userBtn}
-                onClick={() => setShowOption((showOption) => !showOption)}
+                onClick={() => {
+                  if (isLoggedIn) {
+                    setShowOption((showOption) => !showOption);
+                  }
+                }}
               >
                 <Image
                   src="/icons/profile.svg"
@@ -169,7 +189,11 @@ function Header() {
             </div>
           ) : (
             <div>
-              <button className={styles.mobileLoginBtn} onClick={loginHandler}>
+              <button
+                className={styles.mobileLoginBtn}
+                onClick={loginHandler}
+                disabled={isPending}
+              >
                 <Image
                   src="/icons/signInButton.svg"
                   width={40}
@@ -177,7 +201,11 @@ function Header() {
                   alt="login"
                 />
               </button>
-              <button className={styles.loginBtn} onClick={loginHandler}>
+              <button
+                className={styles.loginBtn}
+                onClick={loginHandler}
+                disabled={isPending}
+              >
                 <Image
                   src="/icons/profile.svg"
                   width={24}
@@ -200,12 +228,16 @@ function Header() {
       </div>
       {isOpen && <div className={styles.overlay} onClick={toggleMenu}></div>}
 
-      <AuthModal>
-        {step === "one" && (
-          <SendOtpForm setStep={setStep} setPhone={setPhone} />
-        )}
-        {step === "two" && <CheckOtpForm setStep={setStep} phone={phone} />}
-      </AuthModal>
+      {!isLoggedIn && !isPending && (
+        <Suspense fallback={null}>
+          <AuthModal>
+            {step === "one" && (
+              <SendOtpForm setStep={setStep} setPhone={setPhone} />
+            )}
+            {step === "two" && <CheckOtpForm setStep={setStep} phone={phone} />}
+          </AuthModal>
+        </Suspense>
+      )}
     </header>
   );
 }
