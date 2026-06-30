@@ -1,10 +1,11 @@
 "use client";
 
-import { use, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
 
 import AuthModal from "../templates/AuthModal";
 import SendOtpForm from "./SendOtpForm";
@@ -16,7 +17,10 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState("one");
   const [phone, setPhone] = useState("");
+  const [showOption, setShowOption] = useState(false);
+  const dropdownRef = useRef(null);
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   //check for token
   const { data } = useQuery({
@@ -34,6 +38,23 @@ function Header() {
   //opens login modal
   const loginHandler = () => {
     router.push("?modal=login");
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowOption(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const logoutHandler = async () => {
+    const res = await axios.post("/api/auth/logout");
+    if (res.data.status === "success") {
+      queryClient.invalidateQueries(["auth"]);
+    }
   };
 
   return (
@@ -90,23 +111,64 @@ function Header() {
         </ul>
         <div className={styles.authButton}>
           {isLoggedIn ? (
-            <div className={styles.userBtn}>
-              <Image
-                src="/icons/profile.svg"
-                width={24}
-                height={24}
-                alt="login"
-              />
-              <p>{user?.name || user?.mobile}</p>
-              <Image
-                src="/icons/arrow-down.svg"
-                width={24}
-                height={24}
-                alt="arrow-down"
-              />
+            <div className={styles.userContainer} ref={dropdownRef}>
+              <div
+                className={styles.userBtn}
+                onClick={() => setShowOption((showOption) => !showOption)}
+              >
+                <Image
+                  src="/icons/profile.svg"
+                  width={24}
+                  height={24}
+                  alt="login"
+                />
+                <p>{user?.name || user?.mobile}</p>
+                <Image
+                  src="/icons/arrow-down.svg"
+                  width={24}
+                  height={24}
+                  alt="arrow-down"
+                />
+              </div>
+              {showOption && (
+                <ul className={styles.userOptions}>
+                  <li className={styles.disabledRow}>
+                    <Image
+                      src="/icons/profile-2.svg"
+                      width={28}
+                      height={28}
+                      alt="profile"
+                    />
+                    <p>{user?.name || user?.mobile}</p>
+                  </li>
+                  <Link
+                    href="/dashboard/profile"
+                    onClick={() => setShowOption((showOption) => !showOption)}
+                  >
+                    <li>
+                      <Image
+                        src="/icons/profile-3.svg"
+                        width={20}
+                        height={20}
+                        alt="profile"
+                      />
+                      <p>اطلاعات حساب کاربری</p>
+                    </li>
+                  </Link>
+                  <li onClick={logoutHandler}>
+                    <Image
+                      src="/icons/logout.svg"
+                      width={20}
+                      height={20}
+                      alt="logout"
+                    />
+                    <p>خروج از حساب کاربری</p>
+                  </li>
+                </ul>
+              )}
             </div>
           ) : (
-            <>
+            <div>
               <button className={styles.mobileLoginBtn} onClick={loginHandler}>
                 <Image
                   src="/icons/signInButton.svg"
@@ -124,7 +186,7 @@ function Header() {
                 />
                 <span>ورود | ثبت نام</span>
               </button>
-            </>
+            </div>
           )}
         </div>
       </nav>
