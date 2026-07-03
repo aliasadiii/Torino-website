@@ -1,6 +1,6 @@
 import MyToursPage from "@/components/templates/MyToursPage";
 
-function MyTours() {
+async function MyTours() {
   return <MyToursPage />;
 }
 

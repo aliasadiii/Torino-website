@@ -6,6 +6,7 @@ html {
   font-family: "Kalameh", system-ui, Arial, Helvetica, sans-serif;
   font-weight: 200;
   line-height: 1.5;
+  background-color: #f5f4f4;
 }
 
 body {
@@ -13,7 +14,11 @@ body {
   max-width: 1440px;
   min-height: 100vh;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: #ffffff;
+  border-radius: 20px;
 }
 
 * {

@@ -18,7 +18,9 @@
     "react-dom": "19.2.4",
     "react-hook-form": "^7.80.0",
     "react-hot-toast": "^2.6.0",
-    "yup": "^1.7.1"
+    "react-otp-input": "^3.1.1",
+    "yup": "^1.7.1",
+    "zaman": "^2.1.1"
   },
   "devDependencies": {
     "babel-plugin-react-compiler": "1.0.0",
