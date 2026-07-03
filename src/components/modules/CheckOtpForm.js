@@ -9,6 +9,7 @@ import OTPInput from "react-otp-input";
 import { checkOtp } from "@/services/auth";
 
 import styles from "@/styles/LoginModal.module.css";
+import LineArrowLeftIcon from "../../../public/icons/LineArrowLeftIcon";
 
 function CheckOtpForm({ setStep, phone }) {
   const queryClient = useQueryClient();
@@ -59,8 +60,7 @@ function CheckOtpForm({ setStep, phone }) {
 
   return (
     <div className={styles.container}>
-      <img
-        src="/icons/Line-arrow-left.svg"
+      <LineArrowLeftIcon
         className={styles.stepBack}
         onClick={() => setStep("one")}
       />

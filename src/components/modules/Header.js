@@ -10,8 +10,20 @@ import axios from "axios";
 import AuthModal from "../templates/AuthModal";
 import SendOtpForm from "./SendOtpForm";
 import CheckOtpForm from "./CheckOtpForm";
+import ActiveLink from "../elements/ActiveLink";
 
+//style & icons
 import styles from "@/styles/Header.module.css";
+import HamburgerIcon from "../../../public/icons/HamburgerIcon";
+import HomeIcon from "../../../public/icons/HomeIcon";
+import AirplaneIcon from "../../../public/icons/AirplaneSquareIcon";
+import VolumeLowIcon from "../../../public/icons/VolumeLowIcon";
+import CallIcon from "../../../public/icons/CallIcon";
+import ProfileIcon from "../../../public/icons/ProfileIcon";
+import ArrowDownIcon from "../../../public/icons/ArrowDownIcon";
+import Profile3Icon from "../../../public/icons/Profile3Icon";
+import LogoutIcon from "../../../public/icons/LogoutIcon";
+import SignInButtonIcon from "../../../public/icons/SignInButtonIcon";
 
 function Header() {
   const queryClient = useQueryClient();
@@ -77,7 +89,7 @@ function Header() {
     <header className={styles.header}>
       <nav className={styles.navbar}>
         <div className={styles.hamburger} onClick={toggleMenu}>
-          <Image src="/icons/hamburger.svg" width={20} height={20} alt="menu" />
+          <HamburgerIcon />
         </div>
 
         <div className={styles.logo}>
@@ -92,37 +104,55 @@ function Header() {
         </div>
 
         <ul className={`${styles.navLinks} ${isOpen ? styles.active : ""}`}>
-          <li className={styles.activeLink}>
-            <Link href="/" onClick={() => setIsOpen(false)}>
+          <li
+          // className={styles.activeLink}
+          >
+            <ActiveLink
+              href="/"
+              activeClassName={styles.activeItem}
+              onClick={() => setIsOpen(false)}
+            >
               <p>
-                {isOpen && <img src="/icons/home.svg" />}
+                {isOpen && <HomeIcon />}
                 صفحه اصلی
               </p>
-            </Link>
+            </ActiveLink>
           </li>
           <li>
-            <Link href="#" onClick={() => setIsOpen(false)}>
+            <ActiveLink
+              href="#"
+              activeClassName={styles.activeItem}
+              onClick={() => setIsOpen(false)}
+            >
               <p>
-                {isOpen && <img src="/icons/airplane-square.svg" />}
+                {isOpen && <AirplaneIcon />}
                 خدمات گردشگری
               </p>
-            </Link>
+            </ActiveLink>
           </li>
           <li>
-            <Link href="#" onClick={() => setIsOpen(false)}>
+            <ActiveLink
+              href="#"
+              activeClassName={styles.activeItem}
+              onClick={() => setIsOpen(false)}
+            >
               <p>
-                {isOpen && <img src="/icons/volume-low.svg" />}
+                {isOpen && <VolumeLowIcon />}
                 درباره ما
               </p>
-            </Link>
+            </ActiveLink>
           </li>
           <li>
-            <Link href="#" onClick={() => setIsOpen(false)}>
+            <ActiveLink
+              href="#"
+              activeClassName={styles.activeItem}
+              onClick={() => setIsOpen(false)}
+            >
               <p>
-                {isOpen && <img src="/icons/call.svg" />}
+                {isOpen && <CallIcon />}
                 تماس با ما
               </p>
-            </Link>
+            </ActiveLink>
           </li>
         </ul>
         <div className={styles.authButton}>
@@ -136,29 +166,14 @@ function Header() {
                   }
                 }}
               >
-                <Image
-                  src="/icons/profile.svg"
-                  width={24}
-                  height={24}
-                  alt="login"
-                />
+                <ProfileIcon />
                 <p>{user?.name || user?.mobile}</p>
-                <Image
-                  src="/icons/arrow-down.svg"
-                  width={24}
-                  height={24}
-                  alt="arrow-down"
-                />
+                <ArrowDownIcon />
               </div>
               {showOption && (
                 <ul className={styles.userOptions}>
                   <li className={styles.disabledRow}>
-                    <Image
-                      src="/icons/profile-2.svg"
-                      width={28}
-                      height={28}
-                      alt="profile"
-                    />
+                    <ProfileIcon />
                     <p>{user?.name || user?.mobile}</p>
                   </li>
                   <Link
@@ -166,22 +181,12 @@ function Header() {
                     onClick={() => setShowOption((showOption) => !showOption)}
                   >
                     <li>
-                      <Image
-                        src="/icons/profile-3.svg"
-                        width={20}
-                        height={20}
-                        alt="profile"
-                      />
+                      <Profile3Icon />
                       <p>اطلاعات حساب کاربری</p>
                     </li>
                   </Link>
                   <li onClick={logoutHandler}>
-                    <Image
-                      src="/icons/logout.svg"
-                      width={20}
-                      height={20}
-                      alt="logout"
-                    />
+                    <LogoutIcon />
                     <p>خروج از حساب کاربری</p>
                   </li>
                 </ul>
@@ -194,45 +199,32 @@ function Header() {
                 onClick={loginHandler}
                 disabled={isPending}
               >
-                <Image
-                  src="/icons/signInButton.svg"
-                  width={40}
-                  height={40}
-                  alt="login"
-                />
+                <SignInButtonIcon />
               </button>
               <button
                 className={styles.loginBtn}
                 onClick={loginHandler}
                 disabled={isPending}
               >
-                <Image
-                  src="/icons/profile.svg"
-                  width={24}
-                  height={24}
-                  alt="login"
-                />
+                <ProfileIcon />
                 <span>ورود | ثبت نام</span>
               </button>
             </div>
           )}
         </div>
       </nav>
-      <div className={styles.heroCover}>
-        <Image
-          src="/images/heroCover.jpg"
-          width={2000}
-          height={1000}
-          alt="cover-torino"
-        />
-      </div>
+
       {isOpen && <div className={styles.overlay} onClick={toggleMenu}></div>}
 
       {!isLoggedIn && !isPending && (
         <Suspense fallback={null}>
           <AuthModal>
             {step === "one" && (
-              <SendOtpForm setStep={setStep} setPhone={setPhone} />
+              <SendOtpForm
+                setStep={setStep}
+                setPhone={setPhone}
+                phone={phone}
+              />
             )}
             {step === "two" && <CheckOtpForm setStep={setStep} phone={phone} />}
           </AuthModal>

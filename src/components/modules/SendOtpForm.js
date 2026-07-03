@@ -8,7 +8,7 @@ import { loginSchema } from "@/schema/form";
 import styles from "@/styles/LoginModal.module.css";
 import { sendOtp } from "@/services/auth";
 
-function SendOtpForm({ setStep, setPhone }) {
+function SendOtpForm({ setStep, setPhone, phone }) {
   const router = useRouter();
   const pathname = usePathname();
   const {
@@ -62,6 +62,7 @@ function SendOtpForm({ setStep, setPhone }) {
           className={styles.input}
           id="phoneNumber"
           type="number"
+          defaultValue={phone || ""}
           placeholder="4253***0912"
           {...register("phoneNumber")}
         />
