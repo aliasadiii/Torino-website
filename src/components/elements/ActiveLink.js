@@ -8,6 +8,7 @@ export default function ActiveLink({
   children,
   activeClassName,
   className,
+  onClick,
 }) {
   const pathname = usePathname();
   const isActive = pathname === href;
@@ -16,6 +17,7 @@ export default function ActiveLink({
     <Link
       href={href}
       className={`${className || ""} ${isActive ? activeClassName : ""}`}
+      onClick={onClick}
     >
       {children}
     </Link>

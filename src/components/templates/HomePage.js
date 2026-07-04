@@ -1,11 +1,14 @@
 import Head from "next/head";
-
-import styles from "@/styles/HomePage.module.css";
 import Image from "next/image";
 
-function HomePage() {
+import ToursList from "../modules/homepage/ToursList";
+import SearchBox from "../modules/homepage/SearchBox";
+
+import styles from "@/styles/homepage/HomePage.module.css";
+
+async function HomePage({ searchParams }) {
   return (
-    <div>
+    <>
       <div className={styles.heroCover}>
         <Image
           src="/images/heroCover.jpg"
@@ -14,8 +17,17 @@ function HomePage() {
           alt="cover-torino"
         />
       </div>
-      <h1>HomePage</h1>
-    </div>
+      <main className={styles.mainContainer}>
+        <div className={styles.searchBox}>
+          <h1>
+            <span>تورینو </span>
+            برگزار کننده بهترین تور های داخلی و خارجی
+          </h1>
+          <SearchBox />
+        </div>
+        <ToursList searchParams={searchParams} />
+      </main>
+    </>
   );
 }
 

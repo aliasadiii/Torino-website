@@ -1,4 +1,4 @@
-const formatDate = (dateString) => {
+const formatDate = () => {
   const date = new Date(dateString);
 
   const year = date.getFullYear();
@@ -8,11 +8,11 @@ const formatDate = (dateString) => {
   return `${year}-${month}-${day}`;
 };
 
-const convertToPersianDate = (dateStr) => {
-  if (!dateStr) return "---";
+const convertToPersianDate = (dateString) => {
+  if (!dateString) return "---";
 
   try {
-    const [year, month, day] = dateStr.split("-").map(Number);
+    const [year, month, day] = dateString.split("-").map(Number);
     const date = new Date(year, month - 1, day);
     return new Intl.DateTimeFormat("fa-IR-u-nu-latn", {
       year: "numeric",

@@ -110,7 +110,7 @@ function Header() {
             <ActiveLink
               href="/"
               activeClassName={styles.activeItem}
-              onClick={() => setIsOpen(false)}
+              onClick={toggleMenu}
             >
               <p>
                 {isOpen && <HomeIcon />}

@@ -16,7 +16,6 @@ function ProfilePage({ user }) {
   const sendUserMutation = useMutation({
     mutationFn: sendUserData,
     onSuccess: (data) => {
-      // console.log(data);
       const userData = data.res.data.data;
       queryClient.setQueryData(["auth"], (data) => ({
         ...data,
@@ -29,7 +28,6 @@ function ProfilePage({ user }) {
     },
   });
 
-  console.log("user", user);
   return (
     <div className={styles.container}>
       <ProfileInfo user={user} sendUserMutation={sendUserMutation} />
