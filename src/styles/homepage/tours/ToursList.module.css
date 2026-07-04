@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toursContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.container h2 {
+  font-size: 20px;
+  font-weight: 200;
+}
+
+@media (min-width: 800px) {
+  .toursContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .container h2 {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 800px) {
+  .toursContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
