@@ -2,6 +2,17 @@
 const nextConfig = {
   /* config options here */
   reactCompiler: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "6500",
+        pathname: "/static/images/**",
+        search: "",
+      },
+    ],
+  },
   redirects: async () => {
     return [
       {

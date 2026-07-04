@@ -1,5 +1,5 @@
 import HomePage from "@/components/templates/HomePage";
 
-export default function Home() {
-  return <HomePage />;
+export default function Home({ searchParams }) {
+  return <HomePage searchParams={searchParams} />;
 }
