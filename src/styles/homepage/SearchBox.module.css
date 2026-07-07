@@ -1,0 +1,173 @@
+.container {
+  margin-top: 30px;
+  padding: 15px 18px;
+  min-width: 800px;
+  width: 874px;
+  height: 71px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #00000026;
+  border-radius: 20px;
+}
+
+.container input {
+  border: none;
+  font-size: 20px;
+}
+
+.container input:focus {
+  outline: none;
+}
+
+.container .inputs {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+}
+
+.container .inputs input {
+  width: 100%;
+  border-left: 1px solid #00000033;
+}
+
+.container .left {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.datepickerWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.datepickerWrapper svg {
+  width: 20px;
+  height: 20px;
+}
+
+.datepicker {
+  margin-right: 10px;
+  flex: 1;
+}
+
+.datepickerInput {
+  width: 100%;
+  padding-right: 7px;
+  /* font-size: 15px !important; */
+}
+
+.container button {
+  /* max-width: 190px; */
+  width: 40%;
+  background-color: #28a745;
+  border: none;
+  border-radius: 16px;
+  color: #ffffff;
+  font-size: 24px;
+  display: flex;
+  flex: 0 0 154px;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 3px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: -17px;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #00000033;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  z-index: 20;
+  overflow: hidden;
+}
+
+.dropdownHeader {
+  padding: 7px;
+  font-size: 13px;
+  font-weight: 150;
+  color: #282828b2;
+  background: #f8f8f8;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background: #f5f5f5;
+}
+
+@media (max-width: 800px) {
+  .container {
+    min-width: 100%;
+    width: 100%;
+    flex-direction: column;
+    height: fit-content;
+    gap: 20px;
+    border: none;
+  }
+  .container .inputs {
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .container .inputs input {
+    width: 100%;
+    border-left: none;
+  }
+
+  .inputWrapper {
+    width: 100%;
+    border: 1px solid #00000033;
+    border-radius: 12px;
+  }
+
+  .dropdown {
+    right: 0px;
+  }
+
+  .container .left {
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .datepickerWrapper {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #00000033;
+    border-radius: 12px;
+  }
+
+  .datepickerInput {
+    width: 100%;
+  }
+
+  .container button {
+    width: 100%;
+    max-height: 47px;
+  }
+}

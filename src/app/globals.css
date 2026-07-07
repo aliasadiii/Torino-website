@@ -1,5 +1,5 @@
 html {
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 :root {
@@ -13,12 +13,9 @@ body {
   margin: auto;
   max-width: 1440px;
   min-height: 100vh;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   background-color: #ffffff;
   border-radius: 20px;
+  overflow-x: hidden;
 }
 
 * {

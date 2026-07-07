@@ -22,6 +22,7 @@ const dateDetails = (startDate, endDate) => {
   const month = persianMonths[monthNum - 1];
   const oneDay = 24 * 60 * 60 * 1000;
   const duration = Math.round((end - date) / oneDay);
+  // const night = (end - date) % oneDay;
 
   return { year, monthNum, month, day, duration };
 };
@@ -44,4 +45,21 @@ function getTransportationType(fleetVehicle) {
       return "";
   }
 }
-export { getTransportationType, dateDetails };
+
+function toShamsiDate(date) {
+  const parts = new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).formatToParts(new Date(date));
+
+  const day = parts.find((part) => part.type === "day")?.value;
+  const month = parts.find((part) => part.type === "month")?.value;
+  const year = parts.find((part) => part.type === "year")?.value;
+
+  const shamsiDate = `${day} ${month} ${year}`;
+
+  return shamsiDate;
+}
+
+export { getTransportationType, dateDetails, toShamsiDate };

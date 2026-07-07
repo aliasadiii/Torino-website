@@ -8,7 +8,7 @@ function notFound() {
   return (
     <main className={styles.container}>
       <div className={styles.message}>
-        <p>صفحه مورد نظر یافت نشد!</p>
+        <h2>صفحه مورد نظر یافت نشد!</h2>
         <Button path="/">بازگشت به صفحه اصلی</Button>
       </div>
       <Image

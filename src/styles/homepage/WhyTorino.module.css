@@ -1,0 +1,84 @@
+.container {
+  width: 100%;
+  display: flex;
+  margin: 100px auto;
+  gap: 10px;
+}
+
+.right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title div {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-image: linear-gradient(to bottom, #28a745, #10411b);
+}
+
+.title div svg {
+  width: 16px;
+  height: 20px;
+}
+
+.title p {
+  font-weight: 400;
+  font-size: 35px;
+}
+
+.title p span {
+  color: #28a745;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  gap: 10px;
+}
+
+.info h4 {
+  font-weight: 300;
+  font-size: 24px;
+}
+
+.info p {
+  font-size: 20px;
+}
+
+.left {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .right {
+    width: 100%;
+    padding: 0px;
+  }
+
+  .left {
+    width: 100%;
+    justify-content: center;
+    overflow: hidden;
+  }
+}

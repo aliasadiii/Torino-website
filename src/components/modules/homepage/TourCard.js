@@ -9,11 +9,10 @@ function TourCard({ tour }) {
   const { image, title, startDate, endDate, fleetVehicle, options, price, id } =
     tour;
 
-  const { year, month, day, duration } = dateDetails(startDate, endDate);
+  const { month, duration } = dateDetails(startDate, endDate);
 
   const transportation = getTransportationType(fleetVehicle);
 
-  console.log(title);
   return (
     <div className={styles.tourContainer}>
       <div className={styles.imageWrapper}>
@@ -23,7 +22,6 @@ function TourCard({ tour }) {
           unoptimized
           className={styles.tourImage}
           fill
-          sizes="(max-width: 800px) 100vw, 25vw"
         />
       </div>
       <p className={styles.tourTitle}>{title}</p>
