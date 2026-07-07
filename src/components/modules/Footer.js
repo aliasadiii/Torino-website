@@ -11,31 +11,31 @@ function Footer() {
           <ul>
             <h2>تورینو</h2>
             <li>
-              <Link href="#">درباره ما</Link>
+              <Link href="/info#about-us">درباره ما</Link>
             </li>
             <li>
-              <Link href="#">تماس با ما</Link>
+              <Link href="/info#about-us">تماس با ما</Link>
             </li>
             <li>
-              <Link href="#">چرا تورینو</Link>
+              <Link href="/info#why-torino">چرا تورینو</Link>
             </li>
             <li>
-              <Link href="#">بیمه مسافرتی</Link>
+              <Link href="/info#travel-insurance">بیمه مسافرتی</Link>
             </li>
           </ul>
           <ul>
             <h2>خدمات مشتریان</h2>
             <li>
-              <Link href="#">پشتیبانی آنلاین</Link>
+              <Link href="/info#online-support">پشتیبانی آنلاین</Link>
             </li>
             <li>
-              <Link href="#">راهنمای خرید</Link>
+              <Link href="/info#buy-guide">راهنمای خرید</Link>
             </li>
             <li>
-              <Link href="#">راهنمای استرداد</Link>
+              <Link href="/info#refund-guide">راهنمای استرداد</Link>
             </li>
             <li>
-              <Link href="#">پرسش و پاسخ</Link>
+              <Link href="/info#faq">پرسش و پاسخ</Link>
             </li>
           </ul>
         </div>
@@ -55,7 +55,7 @@ function Footer() {
             </p>
           </div>
           <div className={styles.logos}>
-            <Link href="#">
+            <Link href="https://caa.gov.ir/" target="_blank">
               <Image
                 src="/images/state-airline.jpg"
                 width={78}
@@ -63,7 +63,7 @@ function Footer() {
                 alt="state-airline-logo"
               />
             </Link>
-            <Link href="#">
+            <Link href="https://caa.gov.ir/complaints" target="_blank">
               <Image
                 src="/images/passenger-rights.jpg"
                 width={71}
@@ -71,7 +71,7 @@ function Footer() {
                 alt="passenger-rights-logo"
               />
             </Link>
-            <Link href="#">
+            <Link href="https://ecunion.ir/" target="_blank">
               <Image
                 src="/images/ecunion.jpg"
                 width={68}
@@ -79,7 +79,7 @@ function Footer() {
                 alt="ecUnion-logo"
               />
             </Link>
-            <Link href="#">
+            <Link href="https://samandehi.ir/" target="_blank">
               <Image
                 src="/images/samandehi.jpg"
                 width={68}
@@ -87,7 +87,7 @@ function Footer() {
                 alt="samandehi-logo"
               />
             </Link>
-            <Link href="#">
+            <Link href="https://www.aira.ir" target="_blank">
               <Image
                 src="/images/aira.jpg"
                 width={68}

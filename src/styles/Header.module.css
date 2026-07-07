@@ -3,6 +3,10 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 1px 4px 0 #00000029;
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  z-index: 100;
 }
 
 .logo {
@@ -168,6 +172,7 @@
   }
 
   .navLinks {
+    background: transparent;
     position: static;
     z-index: 0;
     height: 100%;

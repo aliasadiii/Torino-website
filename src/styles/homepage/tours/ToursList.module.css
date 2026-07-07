@@ -40,6 +40,16 @@
   }
 }
 
+@media (min-width: 800px) and (max-width: 1150px) {
+  .toursContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .container h2 {
+    font-size: 32px;
+  }
+}
+
 @media (min-width: 600px) and (max-width: 800px) {
   .toursContainer {
     grid-template-columns: repeat(2, 1fr);

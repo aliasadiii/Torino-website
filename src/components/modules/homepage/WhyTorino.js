@@ -4,7 +4,7 @@ import Slider from "@/components/elements/Slider";
 
 function WhyTorino() {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="whyTorino">
       <div className={styles.right}>
         <div className={styles.title}>
           <div>

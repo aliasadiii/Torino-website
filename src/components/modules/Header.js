@@ -110,7 +110,7 @@ function Header() {
             <ActiveLink
               href="/"
               activeClassName={styles.activeItem}
-              onClick={toggleMenu}
+              onClick={() => setIsOpen(false)}
             >
               <p>
                 {isOpen && <HomeIcon />}
@@ -120,7 +120,7 @@ function Header() {
           </li>
           <li>
             <ActiveLink
-              href="#"
+              href="/info#tourism-services"
               activeClassName={styles.activeItem}
               onClick={() => setIsOpen(false)}
             >
@@ -132,7 +132,7 @@ function Header() {
           </li>
           <li>
             <ActiveLink
-              href="#"
+              href="/info#about-us"
               activeClassName={styles.activeItem}
               onClick={() => setIsOpen(false)}
             >
@@ -144,7 +144,7 @@ function Header() {
           </li>
           <li>
             <ActiveLink
-              href="#"
+              href="/info#contact-us"
               activeClassName={styles.activeItem}
               onClick={() => setIsOpen(false)}
             >

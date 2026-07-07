@@ -94,7 +94,7 @@
 @media (max-width: 800px) {
   .container {
     flex-direction: column;
-    width: 327px;
+    /* width: 327px; */
     height: 190px;
   }
 

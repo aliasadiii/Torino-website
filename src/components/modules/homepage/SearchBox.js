@@ -131,7 +131,7 @@ function SearchBox({ searchParams }) {
       query.set("endDate", data.date.endDate.toISOString());
     }
 
-    const queryString = params.toString();
+    const queryString = query.toString();
     router.push(queryString ? `/?${queryString}` : "/");
   };
 

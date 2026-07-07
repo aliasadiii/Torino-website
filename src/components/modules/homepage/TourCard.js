@@ -16,25 +16,29 @@ function TourCard({ tour }) {
   return (
     <div className={styles.tourContainer}>
       <div className={styles.imageWrapper}>
-        <Image
-          src={image}
-          alt={title}
-          unoptimized
-          className={styles.tourImage}
-          fill
-        />
+        <Link href={`/tours/${id}`}>
+          <Image
+            src={image}
+            alt={title}
+            unoptimized
+            className={styles.tourImage}
+            fill
+          />
+        </Link>
       </div>
       <p className={styles.tourTitle}>{title}</p>
       <p
         className={styles.tourDescription}
       >{`${month} . ${duration} روزه - ${transportation} - ${options}`}</p>
-      <Link href={`/tours/${id}`} className={styles.tourPrice}>
-        <button>رزرو</button>
+      <div className={styles.tourPrice}>
+        <Link href={`/tours/${id}`}>
+          <button>رزرو</button>
+        </Link>
         <p>
           <span>{`${price.toLocaleString("en-US")},000`} </span>
           <span>تومان</span>
         </p>
-      </Link>
+      </div>
     </div>
   );
 }

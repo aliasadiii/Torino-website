@@ -5,7 +5,7 @@ import styles from "@/styles/homepage/Banner.module.css";
 
 function Banner() {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="contact">
       <div className={styles.right}>
         <div className={styles.info}>
           <p>
