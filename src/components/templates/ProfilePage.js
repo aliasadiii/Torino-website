@@ -17,7 +17,7 @@ function ProfilePage({ user }) {
     mutationFn: sendUserData,
     onSuccess: (data) => {
       const userData = data.res.data.data;
-      queryClient.setQueryData(["auth"], (data) => ({
+      queryClient.setQueryData(["user"], (data) => ({
         ...data,
         user: userData,
       }));

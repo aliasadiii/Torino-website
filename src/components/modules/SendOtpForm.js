@@ -7,6 +7,7 @@ import { loginSchema } from "@/schema/form";
 
 import styles from "@/styles/LoginModal.module.css";
 import { sendOtp } from "@/services/auth";
+import toast from "react-hot-toast";
 
 function SendOtpForm({ setStep, setPhone, phone }) {
   const router = useRouter();
@@ -32,13 +33,12 @@ function SendOtpForm({ setStep, setPhone, phone }) {
     mutationFn: sendOtp,
 
     onSuccess: (data, phoneNumber) => {
-      // console.log(data.res.data.code);
       setPhone(phoneNumber);
       setStep("two");
-
-      setError("otpCode", {
-        message: `کد ارسال شده :${data?.res?.data?.code}`,
-      }); //for develop only //replace with a toast later
+      toast.success(`کد با موفقیت ارسال شد :${data?.res?.data?.code}`, {
+        duration: 5000,
+      });
+      //for develop only
     },
 
     onError: (error) => {

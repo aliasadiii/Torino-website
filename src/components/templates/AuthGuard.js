@@ -1,16 +1,14 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+
+import { useGetUserData } from "@/services/queries";
 
 export default function AuthGuard({ children }) {
   const router = useRouter();
 
-  const { data, isPending } = useQuery({
-    queryKey: ["auth"],
-    queryFn: () => fetch("/api/auth/check-me").then((res) => res.json()),
-  });
+  const { data, isPending } = useGetUserData();
 
   const isLoggedIn = data?.isLoggedIn;
 
@@ -30,7 +28,7 @@ export default function AuthGuard({ children }) {
           height: "100vh",
         }}
       >
-        <p>در حال بررسی دسترسی...</p>
+        <p>در حال بررسی سطح دسترسی...</p>
       </div>
     );
   }

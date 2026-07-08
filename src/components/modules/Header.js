@@ -4,9 +4,10 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
+import { useGetUserData } from "@/services/queries";
 import AuthModal from "../templates/AuthModal";
 import SendOtpForm from "./SendOtpForm";
 import CheckOtpForm from "./CheckOtpForm";
@@ -38,10 +39,7 @@ function Header() {
   const dropdownRef = useRef(null);
 
   //check for token
-  const { data, isPending } = useQuery({
-    queryKey: ["auth"],
-    queryFn: () => fetch("/api/auth/check-me").then((res) => res.json()),
-  });
+  const { data, isPending } = useGetUserData();
   const isLoggedIn = data?.isLoggedIn ?? false;
   const user = data?.user ?? {};
 
@@ -78,7 +76,7 @@ function Header() {
     const res = await axios.post("/api/auth/logout");
     if (res.data.status === "success") {
       setShowOption((showOption) => !showOption);
-      queryClient.setQueryData(["auth"], {
+      queryClient.setQueryData(["user"], {
         isLoggedIn: false,
         user: null,
       });

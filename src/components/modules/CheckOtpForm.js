@@ -5,6 +5,7 @@ import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 
+import toast from "react-hot-toast";
 import OTPInput from "react-otp-input";
 import { checkOtp } from "@/services/auth";
 
@@ -27,6 +28,7 @@ function CheckOtpForm({ setStep, phone }) {
       setOtpError("");
       setStep("one");
       const { accessToken, refreshToken, user } = data.res.data;
+      toast.success("با موفقیت وارد شدید");
 
       //setting token in cookie
       const response = await axios.post("/api/auth/set-cookie", {
@@ -36,12 +38,12 @@ function CheckOtpForm({ setStep, phone }) {
       const statusCheck = response.data.status;
       //setting data in [auth]
       if (statusCheck === "success") {
-        queryClient.setQueryData(["auth"], {
+        queryClient.setQueryData(["user"], {
           isLoggedIn: true,
           user,
         });
         router.replace(pathname);
-      } else setOtpError("لطفا دوباره تلاش کنید");
+      } else toast.error("لطفا دوباره تلاش کنید");
     },
 
     onError: () => {

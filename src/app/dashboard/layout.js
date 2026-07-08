@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 
 import DashboardSidebar from "@/components/modules/DashboardSidebar";
-import { checkServerAuth } from "@/utils/auth-server";
 
 import styles from "@/styles/DashboardLayout.module.css";
 import AuthGuard from "@/components/templates/AuthGuard";

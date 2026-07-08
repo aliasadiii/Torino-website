@@ -1,5 +1,7 @@
 import QueryProvider from "@/providers/QueryProvider";
 
+import { Toaster } from "react-hot-toast";
+
 import Header from "@/components/modules/Header";
 import Footer from "@/components/modules/Footer";
 
@@ -19,6 +21,7 @@ export default function RootLayout({ children }) {
           <Header />
           {children}
           <Footer />
+          <Toaster position="top-left" reverseOrder={false} />
         </QueryProvider>
       </body>
     </html>

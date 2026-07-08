@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { dateDetails, getTransportationType, toShamsiDate } from "@/utils/tour";
+import ReserveButton from "../elements/ReserveButton";
 
 import styles from "@/styles/TourDetailPage.module.css";
 import UserTickIcon from "../../../public/icons/UserTickIcon";
@@ -14,8 +15,6 @@ import ProfileUserIcon from "../../../public/icons/ProfileUserIcon";
 import SecurityIcon from "../../../public/icons/SecurityIcon";
 
 function TourDetailPage({ tour }) {
-  console.log(tour);
-
   const {
     id,
     image,
@@ -28,8 +27,6 @@ function TourDetailPage({ tour }) {
     capacity,
     insurance,
   } = tour;
-
-  console.log(toShamsiDate(startDate));
 
   const { duration } = dateDetails(startDate, endDate);
 
@@ -66,7 +63,9 @@ function TourDetailPage({ tour }) {
               </p>
             </div>
             <div className={styles.tourReserve}>
-              <button>رزرو و خرید</button>
+              <ReserveButton path="/checkout" id={id}>
+                رزرو و خرید
+              </ReserveButton>
               <div>
                 <p>{`${price.toLocaleString("en-US")},000`} </p>
                 <span>تومان</span>

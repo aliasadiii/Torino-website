@@ -1,3 +1,5 @@
+import axios from "axios";
+
 async function getTourDetails(tourId) {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -16,4 +18,13 @@ async function getTourDetails(tourId) {
   }
 }
 
-export { getTourDetails };
+async function putInBasket(tourId) {
+  try {
+    const res = await axios.put("/api/user/basket", tourId);
+    return { res };
+  } catch (error) {
+    throw error;
+  }
+}
+
+export { getTourDetails, putInBasket };
