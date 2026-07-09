@@ -8,20 +8,42 @@ const formatDate = (dateString) => {
   return `${year}-${month}-${day}`;
 };
 
-const convertToPersianDate = (dateString) => {
-  if (!dateString) return "---";
+export const convertToPersianDateTime = (dateInput, withTime = false) => {
+  if (!dateInput) return "---";
 
   try {
-    const [year, month, day] = dateString.split("-").map(Number);
-    const date = new Date(year, month - 1, day);
-    return new Intl.DateTimeFormat("fa-IR-u-nu-latn", {
+    let date;
+
+    if (
+      typeof dateInput === "string" &&
+      /^\d{4}-\d{2}-\d{2}$/.test(dateInput)
+    ) {
+      const [year, month, day] = dateInput.split("-").map(Number);
+      date = new Date(Date.UTC(year, month - 1, day));
+    } else {
+      date = new Date(dateInput);
+    }
+
+    if (isNaN(date.getTime())) return "---";
+
+    const datePart = new Intl.DateTimeFormat("fa-IR", {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
     }).format(date);
+
+    if (!withTime) return datePart;
+
+    const timePart = new Intl.DateTimeFormat("fa-IR", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }).format(date);
+
+    return `${timePart} - ${datePart}`;
   } catch (error) {
     return "---";
   }
 };
 
-export { formatDate, convertToPersianDate };
+export { formatDate, convertToPersianDateTime };

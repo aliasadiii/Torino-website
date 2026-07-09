@@ -2,14 +2,14 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { DatePicker } from "zaman";
 
-import { convertToPersianDate, formatDate } from "@/utils/formatDate";
+import { convertToPersianDateTime, formatDate } from "@/utils/formatDate";
 
 import styles from "@/styles/profile/ProfileInfo.module.css";
 import EditIcon from "../../../../public/icons/EditIcon";
 
 function UserInfo({ user, sendUserMutation }) {
   const [edit, setEdit] = useState(false);
-  const { register, control, handleSubmit, reset, setError } = useForm();
+  const { register, control, handleSubmit, reset } = useForm();
 
   const submitHandler = async (data) => {
     try {
@@ -122,7 +122,9 @@ function UserInfo({ user, sendUserMutation }) {
             <div className={styles.profileItem}>
               <p>تاریخ تولد</p>
               <span>
-                {user?.birthDate ? convertToPersianDate(user.birthDate) : "---"}
+                {user?.birthDate
+                  ? convertToPersianDateTime(user.birthDate)
+                  : "---"}
               </span>
             </div>
           </div>
