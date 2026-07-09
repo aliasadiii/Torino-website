@@ -14,7 +14,7 @@ function Footer() {
               <Link href="/info#about-us">درباره ما</Link>
             </li>
             <li>
-              <Link href="/info#about-us">تماس با ما</Link>
+              <Link href="/info#contact-us">تماس با ما</Link>
             </li>
             <li>
               <Link href="/info#why-torino">چرا تورینو</Link>

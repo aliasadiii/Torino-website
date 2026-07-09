@@ -27,4 +27,13 @@ async function putInBasket(tourId) {
   }
 }
 
-export { getTourDetails, putInBasket };
+async function checkoutOrder(data) {
+  try {
+    const res = await axios.post("/api/user/checkout", data);
+    return { res };
+  } catch (error) {
+    throw error;
+  }
+}
+
+export { getTourDetails, putInBasket, checkoutOrder };

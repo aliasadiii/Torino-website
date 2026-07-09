@@ -13,18 +13,29 @@ const dateDetails = (startDate, endDate) => {
     "بهمن",
     "اسفند",
   ];
-  const date = new Date(startDate);
+  const start = new Date(startDate);
   const end = new Date(endDate);
-  const year = date.getFullYear();
-  const monthNum = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
+  start.setHours(0, 0, 0, 0);
+  end.setHours(0, 0, 0, 0);
 
+  const year = start.getFullYear();
+  const monthNum = String(start.getMonth() + 1).padStart(2, "0");
+  const day = String(start.getDate()).padStart(2, "0");
   const month = persianMonths[monthNum - 1];
-  const oneDay = 24 * 60 * 60 * 1000;
-  const duration = Math.round((end - date) / oneDay);
-  // const night = (end - date) % oneDay;
 
-  return { year, monthNum, month, day, duration };
+  const oneDay = 24 * 60 * 60 * 1000;
+  const duration = Math.round((end - start) / oneDay);
+  const nights = Math.round(Math.abs((end - start) / oneDay));
+  const days = nights + 1;
+
+  return {
+    year,
+    monthNum,
+    month,
+    day,
+    duration,
+    durationText: `${days} روز و ${nights} شب`,
+  };
 };
 
 function getTransportationType(fleetVehicle) {

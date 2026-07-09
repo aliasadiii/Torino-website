@@ -1,5 +1,3 @@
-import { redirect } from "next/navigation";
-
 import DashboardSidebar from "@/components/modules/DashboardSidebar";
 
 import styles from "@/styles/DashboardLayout.module.css";

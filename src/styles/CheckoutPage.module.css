@@ -1,0 +1,186 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  gap: 30px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px;
+  border: 1px solid #00000033;
+  border-radius: 10px;
+}
+
+.profileHeader {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  font-weight: 200;
+  font-size: 24px;
+}
+
+.form input {
+  width: 100%;
+  /* max-width: 255px; */
+  padding: 10px;
+  border: 1px solid #00000080;
+  border-radius: 5px;
+}
+
+.genderSelector {
+  appearance: none;
+  background-color: #fff;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #00000080;
+  border-radius: 5px;
+}
+
+.genderSelector::before {
+  padding: 10px;
+}
+
+.tourBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #0000001a;
+  border-radius: 10px;
+  padding: 15px;
+  gap: 10px;
+}
+
+.tourTitle,
+.tourPrice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.tourTitle {
+  border-bottom: 1px dotted #00000080;
+}
+
+.tourTitle h4 {
+  font-weight: 300;
+  font-size: 24px;
+}
+
+.tourTitle span {
+  color: #282828;
+}
+
+.tourPrice h4 {
+  font-weight: 200;
+}
+
+.tourPrice p {
+  font-weight: 300;
+  font-size: 28px;
+  color: #009eca;
+}
+
+.tourPrice span {
+  font-size: 14px;
+  color: #282828cc;
+}
+
+.tourBox button {
+  width: 100%;
+  padding: 10px 30px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.emptyBasket {
+  padding: 50px;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.emptyBasket h1 {
+  font-size: 18px;
+  text-align: justify;
+}
+
+.emptyBasket button {
+  width: 200px;
+  padding: 10px 30px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+@media (min-width: 800px) {
+  .outsideContainer {
+    border: 1px solid #00000010;
+    background-color: #f3f3f3;
+    width: 100%;
+    min-height: 100%;
+    padding: 40px 0 100px 0;
+  }
+
+  .container {
+    flex-direction: row;
+    max-width: 1188px;
+    margin: auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    /* border: 1px solid #00000033; */
+    padding: 0px;
+    gap: 0px;
+  }
+
+  .form {
+    padding: 25px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    border-radius: 10px;
+  }
+
+  .form input,
+  .genderSelector {
+    max-width: 255px;
+  }
+
+  .profileHeader {
+    padding-bottom: 10px;
+  }
+
+  .tourBox {
+    width: 35%;
+    padding: 25px;
+    border: none;
+  }
+
+  .emptyBasket h1 {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1100px) {
+  .tourTitle,
+  .tourPrice {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

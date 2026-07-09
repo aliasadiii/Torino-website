@@ -1,5 +1,3 @@
-// import api from "@/configs/api";
-// import { cookies } from "next/headers";
 import { checkServerAuth } from "@/utils/auth-server";
 import { NextResponse } from "next/server";
 

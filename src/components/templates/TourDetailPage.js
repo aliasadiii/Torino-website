@@ -28,7 +28,7 @@ function TourDetailPage({ tour }) {
     insurance,
   } = tour;
 
-  const { duration } = dateDetails(startDate, endDate);
+  const { durationText } = dateDetails(startDate, endDate);
 
   return (
     <div className={styles.outsideContainer}>
@@ -46,7 +46,7 @@ function TourDetailPage({ tour }) {
           <div className={styles.tourInfo}>
             <div className={styles.tourTitle}>
               <h2>{title}</h2>
-              <p>{`${duration} روز`}</p>
+              <p>{durationText}</p>
             </div>
             <div className={styles.tourFeature}>
               <p>

@@ -27,14 +27,12 @@ export async function PUT(req) {
       const userResponse = await api.put("user/profile", reqBody, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
-      console.log(userResponse.data);
       return NextResponse.json({
         status: 201,
         data: userResponse.data.user,
         message: userResponse.data.message,
       });
     } catch (error) {
-      console.log(error);
       return NextResponse.json({
         error: error.message,
         status: 500,

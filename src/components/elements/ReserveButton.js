@@ -15,12 +15,7 @@ function ReserveButton({ path, children, id }) {
       { id },
       {
         onSuccess: (data) => {
-          toast.success(`${data.res.data.res.message}`, {
-            style: {
-              background: "#333",
-              color: "#fff",
-            },
-          });
+          toast.success(`${data.res.data.res.message}`);
           console.log(data.res.data.res.message);
           router.push(path);
         },

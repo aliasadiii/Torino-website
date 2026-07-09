@@ -37,7 +37,7 @@ async function ToursList({ searchParams }) {
       <h2>همه تور ها</h2>
 
       {tours.length ? (
-        <div className={styles.toursContainer}>
+        <div className={styles.toursContainer} id="tours-list">
           {tours.map((tour) => (
             <TourCard key={tour.id} tour={tour} />
           ))}

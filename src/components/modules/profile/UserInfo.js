@@ -16,9 +16,9 @@ function UserInfo({ user, sendUserMutation }) {
       sendUserMutation.mutateAsync({
         ...data,
         birthDate:
-          user.birthDate !== data.birthDate
-            ? formatDate(data.birthDate)
-            : data.birthDate,
+          user?.birthDate !== data?.birthDate
+            ? formatDate(data?.birthDate)
+            : user?.birthDate,
       });
       setEdit(false);
     } catch (error) {

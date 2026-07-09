@@ -144,10 +144,10 @@
     padding: 25px;
     background-color: #ffffff;
     border-radius: 10px;
+    border: 1px solid #00000033;
     flex-direction: row;
     align-items: flex-start;
     gap: 20px;
-    border: 1px solid #00000033;
   }
 
   .topSection {
