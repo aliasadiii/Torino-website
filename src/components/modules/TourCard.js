@@ -1,22 +1,9 @@
 import { getTransportationType, toShamsiDate } from "@/utils/tour";
 
+import { TransportationIcons } from "@/constants/TransportationIcons";
+
 import styles from "@/styles/MyToursPage.module.css";
 import SunFogIcon from "../../../public/icons/SunFogIcon";
-import AirplaneIcon from "../../../public/icons/AirplaneIcon";
-import BusIcon from "../../../public/icons/BusIcon";
-import ShipIcon from "../../../public/icons/ShipIcon";
-import TrainIcon from "../../../public/icons/TrainIcon";
-import CarSuvIcon from "../../../public/icons/CarSuvIcon";
-import VanIcon from "../../../public/icons/VanIcon";
-
-const transportationIcons = {
-  bus: BusIcon,
-  van: VanIcon,
-  SUV: CarSuvIcon,
-  airplane: AirplaneIcon,
-  ship: ShipIcon,
-  train: TrainIcon,
-};
 
 function TourCard({ tour }) {
   const {
@@ -30,7 +17,7 @@ function TourCard({ tour }) {
     destination,
   } = tour;
 
-  const Icon = transportationIcons[fleetVehicle] || null;
+  const Icon = TransportationIcons[fleetVehicle] || null;
 
   const isFinished = new Date(endDate) < new Date();
   const statusText = isFinished ? "به اتمام رسیده" : "در حال برگزاری";
@@ -65,11 +52,11 @@ function TourCard({ tour }) {
       <div className={styles.tourInfo}>
         <div className={styles.tourNumber}>
           <p>شماره تور</p>
-          <span>{id.split("-")[0].toUpperCase()}</span>
+          <span>{id?.split("-")[0].toUpperCase()}</span>
         </div>
         <div className={styles.tourPrice}>
           <p>مبلغ پرداخت شده</p>
-          <span>{price.toLocaleString("en-US")},000 تومان</span>
+          <span>{price.toLocaleString("en-US")} تومان</span>
         </div>
       </div>
     </div>

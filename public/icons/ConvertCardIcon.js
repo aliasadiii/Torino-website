@@ -11,14 +11,14 @@ export default function ConvertCardIcon({ className }) {
       <path
         d="M14.6667 10C14.6667 12.58 12.58 14.6667 10 14.6667L10.7 13.5"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M1.33337 6.00004C1.33337 3.42004 3.42004 1.33337 6.00004 1.33337L5.30004 2.50004"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M9.48047 1.83337H13.1865C13.7844 1.83337 13.957 1.91971 14.0195 1.98181C14.0774 2.03932 14.1564 2.19199 14.165 2.70642H8.50195C8.51058 2.19155 8.58963 2.03921 8.64746 1.98181C8.70223 1.92746 8.84086 1.85459 9.27539 1.83728L9.48047 1.83337Z"

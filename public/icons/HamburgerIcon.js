@@ -11,20 +11,20 @@ export default function HamburgerIcon({ className }) {
       <path
         d="M21.25 1.25L1.25 1.25"
         stroke="#10411B"
-        stroke-width="2.5"
-        stroke-linecap="round"
+        strokeWidth="2.5"
+        strokeLinecap="round"
       />
       <path
         d="M21.25 9.25L1.25 9.25"
         stroke="#10411B"
-        stroke-width="2.5"
-        stroke-linecap="round"
+        strokeWidth="2.5"
+        strokeLinecap="round"
       />
       <path
         d="M21.25 17.25L1.25 17.25"
         stroke="#10411B"
-        stroke-width="2.5"
-        stroke-linecap="round"
+        strokeWidth="2.5"
+        strokeLinecap="round"
       />
     </svg>
   );

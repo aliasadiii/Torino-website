@@ -5,7 +5,8 @@ async function getTourDetails(tourId) {
 
   try {
     const res = await fetch(`${BASE_URL}tour/${tourId}`, {
-      next: { revalidate: 300 },
+      // next: { revalidate: 300 },
+      cache: "no-store",
     });
 
     if (res.status === 404) return { data: null, error: 404 };

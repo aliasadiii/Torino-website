@@ -1,10 +1,13 @@
+"use client";
+
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { DatePicker } from "zaman";
+import toast from "react-hot-toast";
 
 import { convertToPersianDateTime, formatDate } from "@/utils/formatDate";
 
-import styles from "@/styles/profile/ProfileInfo.module.css";
+import styles from "@/styles/ProfilePage.module.css";
 import EditIcon from "../../../../public/icons/EditIcon";
 
 function UserInfo({ user, sendUserMutation }) {
@@ -12,23 +15,26 @@ function UserInfo({ user, sendUserMutation }) {
   const { register, control, handleSubmit, reset } = useForm();
 
   const submitHandler = async (data) => {
-    try {
-      sendUserMutation.mutateAsync({
-        ...data,
-        birthDate:
-          user?.birthDate !== data?.birthDate
-            ? formatDate(data?.birthDate)
-            : user?.birthDate,
-      });
-      setEdit(false);
-    } catch (error) {
-      console.log(error);
-    }
+    const payload = {
+      ...data,
+      birthDate: data.birthDate
+        ? formatDate(data.birthDate)
+        : user?.birthDate || null,
+    };
+    sendUserMutation.mutate(payload, {
+      onSuccess: () => {
+        setEdit(false);
+        toast.success("تغییرات با موفقیت اعمال شد");
+      },
+      onError: () => {
+        toast.error("ویرایش اطلاعات با خطا مواجه شد.");
+      },
+    });
   };
 
   const cancelHandler = () => {
-    setEdit(false);
     reset();
+    setEdit(false);
   };
 
   return (
@@ -81,12 +87,15 @@ function UserInfo({ user, sendUserMutation }) {
                 accentColor="#28a745"
                 customShowDateFormat="DD MMMM YYYY"
                 round="x2"
+                className={styles.datePicker}
               />
             )}
           />
 
           <div className={styles.buttons}>
-            <button type="submit">تایید</button>
+            <button type="submit" disabled={sendUserMutation.isPending}>
+              تایید
+            </button>
             <button type="button" onClick={cancelHandler}>
               انصراف
             </button>
@@ -115,8 +124,11 @@ function UserInfo({ user, sendUserMutation }) {
             <div className={styles.profileItem}>
               <p>جنسیت</p>
               <span>
-                {(user?.gender && user?.gender === "male" ? "مرد" : "زن") ||
-                  "---"}
+                {user?.gender === "male"
+                  ? "مرد"
+                  : user?.gender === "female"
+                    ? "زن"
+                    : "---"}
               </span>
             </div>
             <div className={styles.profileItem}>

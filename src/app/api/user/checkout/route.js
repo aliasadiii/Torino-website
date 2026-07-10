@@ -33,8 +33,6 @@ export async function POST(req) {
         headers: { Authorization: `bearer ${accessToken}` },
       });
 
-      console.log(res.data);
-
       return NextResponse.json(
         {
           res: res.data,
@@ -42,7 +40,6 @@ export async function POST(req) {
         { status: 201 },
       );
     } catch (error) {
-      console.log(error);
       return NextResponse.json(
         {
           message: "server side error",

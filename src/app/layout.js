@@ -9,8 +9,25 @@ import "./globals.css";
 import "@/styles/fonts.css";
 
 export const metadata = {
-  title: "Torino",
+  metadataBase: new URL("https://your-domain.com"),
+  title: {
+    default: "Torino",
+    template: "%s | Torino",
+  },
   description: "تورینو | برگزار کننده بهترین تور های داخلی و خارجی",
+  keywords: ["Torino", "تور", "رزرو تور", "خرید تور", "سفر", "گردشگری"],
+  applicationName: "Torino",
+  authors: [{ name: "Torino Team" }],
+  creator: "Torino",
+  publisher: "Torino",
+  openGraph: {
+    type: "website",
+    locale: "fa_IR",
+    url: "https://your-domain.com",
+    siteName: "Torino",
+    title: "Torino",
+    description: "رزرو و خرید تورهای گردشگری با Torino",
+  },
 };
 
 export default function RootLayout({ children }) {

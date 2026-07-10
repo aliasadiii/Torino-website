@@ -1,6 +1,11 @@
 import Link from "next/link";
 import styles from "@/styles/PaymentPage.module.css";
 
+export const metadata = {
+  title: "وضعیت پرداخت",
+  description: "انتقال پس از درگاه پرداخت و تکمیل تراکنش",
+};
+
 async function PaymentPage({ searchParams }) {
   const params = await searchParams;
   const isSuccess = params?.status === "success";

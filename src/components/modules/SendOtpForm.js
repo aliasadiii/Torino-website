@@ -1,15 +1,13 @@
 "use client";
-import { useMutation } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/schema/form";
-
-import styles from "@/styles/LoginModal.module.css";
-import { sendOtp } from "@/services/auth";
 import toast from "react-hot-toast";
 
-function SendOtpForm({ setStep, setPhone, phone }) {
+import styles from "@/styles/LoginModal.module.css";
+
+function SendOtpForm({ setStep, setPhone, phone, sendOtpMutation }) {
   const router = useRouter();
   const pathname = usePathname();
   const {
@@ -29,25 +27,20 @@ function SendOtpForm({ setStep, setPhone, phone }) {
   };
 
   //login process
-  const sendOtpMutation = useMutation({
-    mutationFn: sendOtp,
-
-    onSuccess: (data, phoneNumber) => {
-      setPhone(phoneNumber);
-      setStep("two");
-      toast.success(`کد با موفقیت ارسال شد :${data?.res?.data?.code}`, {
-        duration: 5000,
-      });
-      //for develop only
-    },
-
-    onError: (error) => {
-      setError("otpError", { message: `${error?.res?.data?.message}` });
-    },
-  });
-
   const submitHandler = async ({ phoneNumber }) => {
-    sendOtpMutation.mutate(phoneNumber);
+    sendOtpMutation.mutate(phoneNumber, {
+      onSuccess: (data, phoneNumber) => {
+        setPhone(phoneNumber);
+        setStep("two");
+        toast.success(`کد با موفقیت ارسال شد :${data?.res?.data?.code}`, {
+          duration: 5000,
+        });
+        //for develop only
+      },
+      onError: (error) => {
+        setError("otpError", { message: `${error?.res?.data?.message}` });
+      },
+    });
   };
 
   return (
@@ -70,7 +63,9 @@ function SendOtpForm({ setStep, setPhone, phone }) {
         {errors.otpCode && <span>{errors.otpCode?.message}</span>}
         {errors.otpError && <span>{errors.otpError?.message}</span>}
 
-        <button type="submit">ارسال کد تایید</button>
+        <button type="submit" className={styles.enterBtn}>
+          ارسال کد تایید
+        </button>
       </form>
     </div>
   );

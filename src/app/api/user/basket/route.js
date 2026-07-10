@@ -36,8 +36,6 @@ export async function PUT(req) {
         },
       );
 
-      console.log(res.data);
-
       return NextResponse.json(
         {
           res: res.data,
@@ -45,7 +43,6 @@ export async function PUT(req) {
         { status: 201 },
       );
     } catch (error) {
-      console.log(error);
       return NextResponse.json(
         {
           message: "server side error",

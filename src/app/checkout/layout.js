@@ -1,5 +1,13 @@
-import AuthGuard from "@/components/templates/AuthGuard";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default async function checkoutLayout({ children }) {
-  return <AuthGuard>{children}</AuthGuard>;
+  const cookieStore = await cookies();
+  const accessToken = cookieStore.get("accessToken")?.value;
+
+  if (!accessToken) {
+    redirect("/");
+  }
+
+  return children;
 }

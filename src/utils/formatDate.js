@@ -46,4 +46,10 @@ export const convertToPersianDateTime = (dateInput, withTime = false) => {
   }
 };
 
-export { formatDate, convertToPersianDateTime };
+const formatTime = (seconds) => {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${mins}:${secs.toString().padStart(2, "0")}`;
+};
+
+export { formatDate, convertToPersianDateTime, formatTime };

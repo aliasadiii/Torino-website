@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
@@ -8,17 +8,19 @@ import { usePathname, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import OTPInput from "react-otp-input";
 import { checkOtp } from "@/services/auth";
+import { formatTime } from "@/utils/formatDate";
 
 import styles from "@/styles/LoginModal.module.css";
 import LineArrowLeftIcon from "../../../public/icons/LineArrowLeftIcon";
 
-function CheckOtpForm({ setStep, phone }) {
+function CheckOtpForm({ setStep, phone, setPhone, sendOtpMutation }) {
   const queryClient = useQueryClient();
   const router = useRouter();
   const pathname = usePathname();
 
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState("");
+  const [timer, setTimer] = useState(90);
 
   //check otp process
   const checkOtpMutation = useMutation({
@@ -42,6 +44,7 @@ function CheckOtpForm({ setStep, phone }) {
           isLoggedIn: true,
           user,
         });
+        setPhone("");
         router.replace(pathname);
       } else toast.error("لطفا دوباره تلاش کنید");
     },
@@ -51,6 +54,7 @@ function CheckOtpForm({ setStep, phone }) {
     },
   });
 
+  //submit form data
   const submitHandler = (event) => {
     event.preventDefault();
     if (otp.length < 5) {
@@ -58,6 +62,32 @@ function CheckOtpForm({ setStep, phone }) {
       return;
     }
     checkOtpMutation.mutate({ mobile: phone, code: otp });
+  };
+
+  //count down for counter
+  useEffect(() => {
+    if (timer > 0) {
+      const countdown = setInterval(() => {
+        setTimer((prev) => prev - 1);
+      }, 1000);
+      return () => clearInterval(countdown);
+    }
+  }, [timer]);
+
+  //resend otp code
+  const resendOtpHandler = () => {
+    setTimer(90);
+    setOtp("");
+    console.log(phone);
+    sendOtpMutation.mutate(phone, {
+      onSuccess: (data) => {
+        console.log(data);
+        toast.success(`کد جدید ارسال شد :${data?.res?.data?.code}`, {
+          duration: 5000,
+        });
+        //for develop only
+      },
+    });
   };
 
   return (
@@ -81,7 +111,23 @@ function CheckOtpForm({ setStep, phone }) {
           renderSeparator={<span></span>}
           renderInput={(props) => <input {...props} />}
         />
-        <p className={styles.counter}>1:25 تا ارسال مجدد کد</p>
+
+        <div className={styles.counterWrapper}>
+          {timer > 0 ? (
+            <p className={styles.counter}>
+              {formatTime(timer)} تا ارسال مجدد کد
+            </p>
+          ) : (
+            <button
+              type="button"
+              onClick={resendOtpHandler}
+              className={styles.resendBtn}
+            >
+              ارسال مجدد کد
+            </button>
+          )}
+        </div>
+
         {otpError && (
           <span style={{ paddingTop: "5px", fontSize: "15px" }}>
             {otpError}
@@ -91,7 +137,7 @@ function CheckOtpForm({ setStep, phone }) {
           type="submit"
           style={{ marginTop: "20px" }}
           disabled={checkOtpMutation.isPending || checkOtpMutation.isSuccess}
-          className={checkOtpMutation.isPending ? styles.disabledBtn : ""}
+          className={`${checkOtpMutation.isPending ? styles.disabledBtn : ""} + ${styles.enterBtn}`}
         >
           ورود به تورینو
         </button>

@@ -15,8 +15,8 @@ export default function VolumeLowIcon({ className }) {
       <path
         d="M12.8867 5.33337C14.0734 6.91337 14.0734 9.08671 12.8867 10.6667"
         stroke="#171717"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

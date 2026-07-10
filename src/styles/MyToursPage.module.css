@@ -119,10 +119,45 @@
   font-size: 12px;
 }
 
+.emptyState {
+  border: 1px dashed #d9d9d9;
+  width: 100%;
+  min-height: 250px;
+  padding: 32px 16px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.emptyState p {
+  margin: 0;
+  color: #666;
+  font-size: 16px;
+}
+
+.toursLink {
+  padding: 10px 24px;
+  border-radius: 8px;
+  color: #fff;
+  background-color: #28a745;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.toursLink:hover {
+  background-color: #218838;
+}
+
 @media (min-width: 800px) {
   .container {
     border: 1px solid #00000033;
     padding: 15px;
+    min-height: calc(100vh - 400px);
   }
 
   .tourBadge {
@@ -171,5 +206,9 @@
   .tourInfo p,
   .tourInfo span {
     font-size: 14px;
+  }
+
+  .emptyState {
+    border: none;
   }
 }

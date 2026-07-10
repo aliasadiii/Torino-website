@@ -6,13 +6,14 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
 
 import { useGetUserData } from "@/services/queries";
 import AuthModal from "../templates/AuthModal";
 import SendOtpForm from "./SendOtpForm";
 import CheckOtpForm from "./CheckOtpForm";
 import ActiveLink from "../elements/ActiveLink";
-
+import { sendOtp } from "@/services/auth";
 //style & icons
 import styles from "@/styles/Header.module.css";
 import HamburgerIcon from "../../../public/icons/HamburgerIcon";
@@ -80,8 +81,14 @@ function Header() {
         isLoggedIn: false,
         user: null,
       });
+      router.refresh();
     }
   };
+
+  //login process
+  const sendOtpMutation = useMutation({
+    mutationFn: sendOtp,
+  });
 
   return (
     <header className={styles.header}>
@@ -97,6 +104,7 @@ function Header() {
               width={146}
               height={44}
               alt="torino-logo"
+              priority
             />
           </Link>
         </div>
@@ -222,9 +230,17 @@ function Header() {
                 setStep={setStep}
                 setPhone={setPhone}
                 phone={phone}
+                sendOtpMutation={sendOtpMutation}
               />
             )}
-            {step === "two" && <CheckOtpForm setStep={setStep} phone={phone} />}
+            {step === "two" && (
+              <CheckOtpForm
+                setStep={setStep}
+                phone={phone}
+                setPhone={setPhone}
+                sendOtpMutation={sendOtpMutation}
+              />
+            )}
           </AuthModal>
         </Suspense>
       )}

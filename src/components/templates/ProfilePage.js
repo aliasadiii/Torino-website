@@ -5,7 +5,7 @@ import { sendUserData } from "@/services/user";
 
 import ProfileInfo from "@/components/modules/profile/ProfileInfo";
 
-import styles from "@/styles/profile/ProfilePage.module.css";
+import styles from "@/styles/ProfilePage.module.css";
 import UserInfo from "../modules/profile/UserInfo";
 import UserBankInfo from "../modules/profile/UserBankInfo";
 
@@ -17,14 +17,14 @@ function ProfilePage({ user }) {
     mutationFn: sendUserData,
     onSuccess: (data) => {
       const userData = data.res.data.data;
-      queryClient.setQueryData(["user"], (data) => ({
-        ...data,
+      queryClient.setQueryData(["user"], (oldData) => ({
+        ...oldData,
         user: userData,
       }));
       router.refresh();
     },
     onError: (error) => {
-      console.log(error);
+      // console.log(error);
     },
   });
 

@@ -8,6 +8,11 @@ import Button from "@/components/elements/Button";
 
 import styles from "@/styles/CheckoutPage.module.css";
 
+export const metadata = {
+  title: "تسویه حساب",
+  description: "تکمیل فرآیند خرید و پرداخت تور",
+};
+
 async function Checkout() {
   try {
     const cookieStore = await cookies();
@@ -20,7 +25,6 @@ async function Checkout() {
     const status = error?.response?.status;
 
     if (status === 404) {
-      console.log(error?.response);
       return (
         <div className={styles.emptyBasket}>
           <h1>در حال حاظر سبد خرید شما خالی است !</h1>

@@ -10,5 +10,6 @@
     flex-direction: row;
     margin-top: 35px;
     align-items: flex-start;
+    padding: 5px 120px;
   }
 }

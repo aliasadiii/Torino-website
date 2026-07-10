@@ -52,7 +52,7 @@
 
 .logos img {
   width: 40px;
-  height: 40px;
+  height: auto;
 }
 
 .copyRight {
@@ -96,10 +96,11 @@
 
   .logos {
     width: 100%;
+    height: auto;
   }
 
   .logos img {
     width: 68px;
-    height: 68px;
+    height: auto;
   }
 }

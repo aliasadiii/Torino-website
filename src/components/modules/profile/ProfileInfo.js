@@ -1,14 +1,14 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 import EditIcon from "../../../../public/icons/EditIcon";
 
-// import styles from "@/styles/profile/ProfilePage.module.css";
-import styles from "@/styles/profile/ProfileInfo.module.css";
+import styles from "@/styles/ProfilePage.module.css";
 
 function ProfileInfo({ user, sendUserMutation }) {
-  const { register, handleSubmit, setError } = useForm();
+  const { register, handleSubmit } = useForm();
   const [edit, setEdit] = useState(false);
 
   const submitHandler = async (email) => {
@@ -16,12 +16,16 @@ function ProfileInfo({ user, sendUserMutation }) {
       setEdit(false);
       return;
     }
-    try {
-      sendUserMutation.mutateAsync(email);
-      setEdit(false);
-    } catch (error) {
-      console.log(error);
-    }
+
+    sendUserMutation.mutate(email, {
+      onSuccess: () => {
+        setEdit(false);
+        toast.success("تغییرات با موفقیت اعمال شد");
+      },
+      onError: () => {
+        toast.error("ویرایش اطلاعات با خطا مواجه شد.");
+      },
+    });
   };
 
   return (
@@ -43,7 +47,9 @@ function ProfileInfo({ user, sendUserMutation }) {
               defaultValue={user?.email || ""}
               {...register("email")}
             />
-            <button type="submit">تایید</button>
+            <button type="submit" disabled={sendUserMutation.isPending}>
+              تایید
+            </button>
           </form>
         ) : (
           <div className={styles.profileItem}>

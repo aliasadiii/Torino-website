@@ -45,7 +45,7 @@ function getTransportationType(fleetVehicle) {
     case "van":
       return "ون";
     case "SUV":
-      return "ماشین(suv)";
+      return "ماشین";
     case "airplane":
       return "پرواز";
     case "train":

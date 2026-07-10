@@ -16,7 +16,6 @@ function ReserveButton({ path, children, id }) {
       {
         onSuccess: (data) => {
           toast.success(`${data.res.data.res.message}`);
-          console.log(data.res.data.res.message);
           router.push(path);
         },
         onError: (error) => {
@@ -24,7 +23,6 @@ function ReserveButton({ path, children, id }) {
           const data = error?.response?.data;
 
           if (status === 401 && data?.isLoggedIn === false) {
-            console.log(data);
             router.push("?modal=login");
             toast.error(
               "برای رزرو و خرید این تور باید ابتدا وارد حساب کاربری خود شوید !",

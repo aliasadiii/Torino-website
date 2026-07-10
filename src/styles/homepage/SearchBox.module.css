@@ -58,11 +58,6 @@
   height: 20px;
 }
 
-.datepicker {
-  margin-right: 10px;
-  flex: 1;
-}
-
 .datepickerInput {
   width: 100%;
   padding-right: 7px;

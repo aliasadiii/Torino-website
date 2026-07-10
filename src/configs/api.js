@@ -5,16 +5,4 @@ const api = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-// api.interceptors.request.use(async (request) => {
-//   console.log(request);
-
-//   const res = await fetch("/api/auth/check-cookie");
-//   const json = await res.json();
-//   const { accessToken, refreshToken } = json;
-//   console.log(accessToken, refreshToken);
-//   console.log(json);
-
-//   return request;
-// });
-
 export default api;

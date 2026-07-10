@@ -15,7 +15,6 @@ import LineArrowLeftIcon2 from "../../../public/icons/LineArrowLeftIcon2";
 import LineArrowRightIcon from "../../../public/icons/LineArrowRightIcon";
 
 function Slider() {
-  // استفاده از State به جای useRef برای اطمینان از شناسایی المان‌ها بعد از ریلود
   const [prevEl, setPrevEl] = useState(null);
   const [nextEl, setNextEl] = useState(null);
   const [paginationEl, setPaginationEl] = useState(null);
@@ -56,8 +55,6 @@ function Slider() {
             <div className={styles.imageWrap}>
               <Image
                 src={src}
-                // width={389}
-                // height={479}
                 fill
                 sizes="(max-width: 768px) 80vw, 389px"
                 alt={`slider-photo-${index + 1}`}

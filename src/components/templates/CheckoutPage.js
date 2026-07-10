@@ -27,7 +27,6 @@ function CheckoutPage({ tour }) {
   const { mutate, isPending } = useMutation({ mutationFn: checkoutOrder });
 
   const submitHandler = async (data) => {
-    console.log(data);
     mutate(
       {
         ...data,
@@ -120,7 +119,7 @@ function CheckoutPage({ tour }) {
           <div className={styles.tourPrice}>
             <h4>قیمت نهایی</h4>
             <p>
-              {`${price.toLocaleString("en-US")},000`}
+              {price.toLocaleString("en-US")}
               <span> تومان</span>
             </p>
           </div>

@@ -66,11 +66,33 @@
   cursor: pointer;
 }
 
-.counter {
+.counterWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.counter,
+.resendBtn {
   font-weight: 150;
   font-size: 12px;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
+}
+
+.resendBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.resendBtn {
+  border-bottom: 1px solid black;
+}
+
+.resendBtn:hover {
+  color: #7a7a7a;
 }
 
 .message {
@@ -94,7 +116,7 @@
   border-radius: 6px;
 }
 
-.form button {
+.enterBtn {
   width: 278px;
   height: 54px;
   margin: 40px 0;
@@ -121,7 +143,7 @@
   }
 
   .input,
-  .form button,
+  .enterBtn,
   .otpBox {
     width: 491px;
   }

@@ -1,7 +1,10 @@
+"use client";
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
-import styles from "@/styles/profile/ProfileInfo.module.css";
+import styles from "@/styles/ProfilePage.module.css";
 import EditIcon from "../../../../public/icons/EditIcon";
 
 function UserBankInfo({ user, sendUserMutation }) {
@@ -9,15 +12,18 @@ function UserBankInfo({ user, sendUserMutation }) {
   const { register, handleSubmit, reset, setError } = useForm();
 
   const submitHandler = async (data) => {
-    console.log({});
-    try {
-      sendUserMutation.mutateAsync({
-        payment: { ...data },
-      });
-      setEdit(false);
-    } catch (error) {
-      console.log(error);
-    }
+    sendUserMutation.mutate(
+      { payment: { ...data } },
+      {
+        onSuccess: () => {
+          setEdit(false);
+          toast.success("تغییرات با موفقیت اعمال شد");
+        },
+        onError: () => {
+          toast.error("ویرایش اطلاعات با خطا مواجه شد.");
+        },
+      },
+    );
   };
 
   const cancelHandler = () => {
@@ -34,26 +40,32 @@ function UserBankInfo({ user, sendUserMutation }) {
         >
           <h3 className={styles.profileHeader}>ویرایش اطلاعات حساب بانکی</h3>
           <input
-            type="number"
-            placeholder="شماره شبا"
+            type="text"
+            inputMode="numeric"
+            placeholder="شماره شبا، مانند IR..."
             defaultValue={user?.payment?.shaba_code || ""}
             {...register("shaba_code")}
           />
           <input
-            type="number"
+            type="text"
+            inputMode="numeric"
+            maxLength={16}
             placeholder="شماره کارت"
             defaultValue={user?.payment?.debitCard_code || ""}
             {...register("debitCard_code")}
           />
           <input
-            type="number"
+            type="text"
+            inputMode="numeric"
             placeholder="شماره حساب"
             defaultValue={user?.payment?.accountIdentifier || ""}
             {...register("accountIdentifier")}
           />
 
           <div className={styles.buttons}>
-            <button type="submit">تایید</button>
+            <button type="submit" disabled={sendUserMutation.isPending}>
+              تایید
+            </button>
             <button type="button" onClick={cancelHandler}>
               انصراف
             </button>

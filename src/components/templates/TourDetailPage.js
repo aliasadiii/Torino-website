@@ -3,6 +3,8 @@ import Image from "next/image";
 import { dateDetails, getTransportationType, toShamsiDate } from "@/utils/tour";
 import ReserveButton from "../elements/ReserveButton";
 
+import { TransportationIcons } from "@/constants/TransportationIcons";
+
 import styles from "@/styles/TourDetailPage.module.css";
 import UserTickIcon from "../../../public/icons/UserTickIcon";
 import MapIcon from "../../../public/icons/MapIcon";
@@ -10,7 +12,6 @@ import MedalStarIcon from "../../../public/icons/MedalStarIcon";
 import RoutingIcon from "../../../public/icons/RoutingIcon";
 import CalendarStartIcon from "../../../public/icons/CalendarStartIcon";
 import CalendarEndIcon from "../../../public/icons/CalendarEndIcon";
-import BusIcon from "../../../public/icons/BusIcon";
 import ProfileUserIcon from "../../../public/icons/ProfileUserIcon";
 import SecurityIcon from "../../../public/icons/SecurityIcon";
 
@@ -29,6 +30,7 @@ function TourDetailPage({ tour }) {
   } = tour;
 
   const { durationText } = dateDetails(startDate, endDate);
+  const Icon = TransportationIcons[fleetVehicle] || null;
 
   return (
     <div className={styles.outsideContainer}>
@@ -51,6 +53,7 @@ function TourDetailPage({ tour }) {
             <div className={styles.tourFeature}>
               <p>
                 <UserTickIcon />
+
                 <span>تورلیدر از مبدا</span>
               </p>
               <p>
@@ -67,7 +70,7 @@ function TourDetailPage({ tour }) {
                 رزرو و خرید
               </ReserveButton>
               <div>
-                <p>{`${price.toLocaleString("en-US")},000`} </p>
+                <p>{price.toLocaleString("en-US")} </p>
                 <span>تومان</span>
               </div>
             </div>
@@ -97,7 +100,7 @@ function TourDetailPage({ tour }) {
           </div>
           <div className={styles.detailsItem}>
             <div>
-              <BusIcon />
+              {<Icon />}
               <span>حمل و نقل</span>
             </div>
             <p>{getTransportationType(fleetVehicle)}</p>
