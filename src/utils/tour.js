@@ -51,7 +51,7 @@ function getTransportationType(fleetVehicle) {
     case "train":
       return "قطار";
     case "ship":
-      return "دریایی";
+      return "کشتی";
     default:
       return "";
   }

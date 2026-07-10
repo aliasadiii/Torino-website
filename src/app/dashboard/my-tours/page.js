@@ -1,7 +1,27 @@
+import { cookies } from "next/headers";
+
+import api from "@/configs/api";
+
+import ServerError from "@/components/modules/ServerError";
 import MyToursPage from "@/components/templates/MyToursPage";
 
 async function MyTours() {
-  return <MyToursPage />;
+  try {
+    const cookieStore = await cookies();
+    const accessToken = cookieStore.get("accessToken")?.value;
+    const res = await api.get("user/tours", {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    return <MyToursPage tours={res?.data} />;
+  } catch (error) {
+    const status = error?.response?.status;
+
+    if (status >= 500) {
+      return <ServerError />;
+    }
+
+    return <div>خطایی رخ داده است</div>;
+  }
 }
 
 export default MyTours;
