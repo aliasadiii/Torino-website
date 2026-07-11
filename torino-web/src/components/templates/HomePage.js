@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Image from "next/image";
 
 import SearchBox from "../modules/homepage/SearchBox";
@@ -22,6 +21,7 @@ async function HomePage({ searchParams }) {
           width={2000}
           height={1000}
           alt="cover-torino"
+          priority
         />
       </div>
       <main className={styles.mainContainer}>

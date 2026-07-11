@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 **/node_modules/
@@ -18,17 +16,16 @@
 /.next/
 /out/
 
-# production
+# node/api builds & logs
+/dist
 /build
-
-
-# debug
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files
 .env*
 .env.local
 .env.*.local
@@ -54,7 +51,20 @@ next-env.d.ts
 *.sln
 *.sw?
 
-# Key files (important for security)
+# Key files 
 *.pub
 id_ed25519
 id_rsa
+
+# Generated directories in nested projects
+**/.next/
+**/out/
+**/dist/
+**/build/
+
+# Local safety backups and Git snapshots
+*-BACKUP/
+*-BACKUP-incomplete/
+*-BACKUP.tar.gz
+*.diff
+*.partial.diff
