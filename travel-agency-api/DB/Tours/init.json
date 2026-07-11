@@ -1,0 +1,204 @@
+[
+  {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "origin": {
+      "persianName": "تهران",
+      "id": "1",
+      "name": "Tehran"
+    },
+    "destination": {
+      "id": "2",
+      "persianName": "سنندج",
+      "name": "Sananndaj"
+    },
+    "startDate": "2025-10-01T00:00:00.000Z",
+    "endDate": "2025-10-05T00:00:00.000Z",
+    "title": "تور کردستان",
+    "fleetVehicle": "bus",
+    "price": 10500000,
+    "availableSeats": 23,
+    "capacity": 30,
+    "insurance": {
+      "exist": true,
+      "amount": "بیمه 5 میلیون تومانی"
+    },
+    "options": [
+      "راهنمای تور",
+      "ساحل اختصاصی",
+      "صبحانه، نهار و شام"
+    ],
+    "image": "/static/images/kurdestanTour.png"
+  },
+  {
+    "id": "b2c3d4e5-f678-90ab-cdef-234567890abc",
+    "origin": {
+      "persianName": "سنندج",
+      "id": "2",
+      "name": "Sananndaj"
+    },
+    "destination": {
+      "id": "3",
+      "persianName": "مادرید",
+      "name": "Madrid"
+    },
+    "startDate": "2025-10-10T00:00:00.000Z",
+    "endDate": "2025-10-25T00:00:00.000Z",
+    "title": "تور مادرید",
+    "fleetVehicle": "ship",
+    "price": 240000000,
+    "availableSeats": 14,
+    "capacity": 150,
+    "insurance": {
+      "exist": false
+    },
+    "options": [
+      "راهنمای تور",
+      "نهار و شام"
+    ],
+    "image": "/static/images/madridTour.png"
+  },
+  {
+    "id": "c3d4e5f6-7890-abcd-ef12-34567890abcd",
+    "origin": {
+      "persianName": "اصفهان",
+      "id": "4",
+      "name": "Isfahan"
+    },
+    "destination": {
+      "id": "5",
+      "persianName": "سلیمانیه",
+      "name": "Sulaymaniyah"
+    },
+    "startDate": "2025-11-01T00:00:00.000Z",
+    "endDate": "2025-11-10T00:00:00.000Z",
+    "title": "سلیمانیه",
+    "fleetVehicle": "train",
+    "price": 35000000,
+    "availableSeats": 32,
+    "capacity": 50,
+    "insurance": {
+      "exist": true,
+      "amount": "بیمه 50 هزار دیناری"
+    },
+    "options": [
+      "نهار و صبحانه",
+      "هتل پنج ستاره"
+    ],
+    "image": "/static/images/sulaymaniyahTour.png"
+  },
+  {
+    "id": "d4e5f678-90ab-cdef-1234-567890abcdef",
+    "origin": {
+      "persianName": "تهران",
+      "id": "1",
+      "name": "Tehran"
+    },
+    "destination": {
+      "id": "6",
+      "persianName": "هولر",
+      "name": "Hewler"
+    },
+    "startDate": "2025-11-15T00:00:00.000Z",
+    "endDate": "2025-11-22T00:00:00.000Z",
+    "title": "هولر",
+    "fleetVehicle": "airplane",
+    "price": 45000000,
+    "availableSeats": 14,
+    "capacity": 30,
+    "insurance": {
+      "exist": false
+    },
+    "options": [
+      "نهار و صبحانه",
+      "هتل پنج ستاره"
+    ],
+    "image": "/static/images/arbilTour.png"
+  },
+  {
+    "id": "e5f67890-abcd-ef12-3456-7890abcdef12",
+    "origin": {
+      "persianName": "تهران",
+      "id": "1",
+      "name": "Tehran"
+    },
+    "destination": {
+      "id": "7",
+      "persianName": "مازندران",
+      "name": "Mazandaran"
+    },
+    "startDate": "2025-12-01T00:00:00.000Z",
+    "endDate": "2025-12-15T00:00:00.000Z",
+    "title": "تور مازندران",
+    "fleetVehicle": "SUV",
+    "price": 18500000,
+    "availableSeats": 300,
+    "capacity": 350,
+    "insurance": {
+      "exist": true,
+      "amount": "بیمه 5 میلیون تومانی"
+    },
+    "options": [
+      "نهار و صبحانه",
+      "هتل پنج ستاره"
+    ],
+    "image": "/static/images/mazandaranTour.png"
+  },
+  {
+    "id": "f67890ab-cdef-1234-5678-90abcdef1234",
+    "origin": {
+      "persianName": "تهران",
+      "id": "1",
+      "name": "Tehran"
+    },
+    "destination": {
+      "id": "8",
+      "persianName": "گیلان",
+      "name": "Gilan"
+    },
+    "startDate": "2026-01-10T00:00:00.000Z",
+    "endDate": "2026-01-16T00:00:00.000Z",
+    "title": "تور آفرود",
+    "fleetVehicle": "SUV",
+    "price": 3500000,
+    "availableSeats": 24,
+    "capacity": 250,
+    "insurance": {
+      "exist": true,
+      "amount": "بیمه 5 میلیون تومانی"
+    },
+    "options": [
+      "نهار و صبحانه",
+      "هتل پنج ستاره"
+    ],
+    "image": "/static/images/offroadTour.png"
+  },
+  {
+    "id": "67890abc-def1-2345-6789-0abcdef12345",
+    "origin": {
+      "persianName": "تهران",
+      "id": "1",
+      "name": "Tehran"
+    },
+    "destination": {
+      "id": "9",
+      "persianName": "ایتالیا",
+      "name": "Italy"
+    },
+    "startDate": "2026-02-01T00:00:00.000Z",
+    "endDate": "2026-02-20T00:00:00.000Z",
+    "title": "تور ایتالیا",
+    "fleetVehicle": "airplane",
+    "price": 280000000,
+    "availableSeats": 20,
+    "capacity": 200,
+    "insurance": {
+      "exist": true,
+      "amount": "بیمه 200 دلاری"
+    },
+    "options": [
+      "نهار و صبحانه",
+      "هتل پنج ستاره"
+    ],
+    "image": "/static/images/italyTour.png"
+  }
+]

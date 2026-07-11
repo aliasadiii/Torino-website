@@ -1,0 +1,75 @@
+.container {
+  width: 100%;
+  min-height: 565px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.message h2 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.message .button {
+  width: 232px;
+  height: 58px;
+  border-radius: 16px;
+  border: none;
+  background-color: #d8ffe1;
+  color: #28a745;
+  font-size: 20px;
+  font-weight: 300;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message p {
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.container img {
+  width: 100%;
+  height: auto;
+  max-width: 320px;
+}
+
+@media (min-width: 800px) {
+  .container {
+    min-height: 734px;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 0px;
+  }
+
+  .message h2 {
+    font-size: 36px;
+  }
+
+  .message p {
+    font-size: 24px;
+  }
+
+  .message .button {
+    width: 361px;
+    height: 75px;
+    font-size: 28px;
+  }
+
+  .container img {
+    max-width: 555px;
+    max-height: 555px;
+  }
+}

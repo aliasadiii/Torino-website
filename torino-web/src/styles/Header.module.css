@@ -1,0 +1,240 @@
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 4px 0 #00000029;
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  z-index: 100;
+}
+
+.logo {
+  display: none;
+}
+
+.navbar {
+  width: 100%;
+  height: 65px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+}
+
+.hamburger {
+  display: block;
+  cursor: pointer;
+  color: #10411b;
+}
+
+.navLinks {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 210px;
+  height: 100vh;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s;
+  z-index: 100;
+  border-radius: 12px;
+  padding: 32px 12px;
+}
+
+.navLinks p {
+  display: flex;
+  padding-bottom: 25px;
+  align-items: center;
+}
+.activeLink {
+  color: #28a745;
+}
+
+.navLinks svg {
+  margin-left: 10px;
+}
+
+.navLinks.active {
+  right: 0;
+}
+
+.loginBtn {
+  display: none;
+}
+
+.authButton button {
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.mobileLoginBtn {
+  border: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 90;
+  transition: opacity 0.3s ease;
+}
+
+.userBtn {
+  width: fit-content;
+  font-size: 14px;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #28a745;
+  cursor: pointer;
+}
+
+.userContainer {
+  position: relative;
+}
+
+.userOptions {
+  width: 157px;
+  height: 114px;
+  position: absolute;
+  top: calc(100% + 15px);
+  right: -12px;
+  background-color: #ffffff;
+  border: 1px solid #0000000c;
+  border-radius: 11px;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.userOptions li {
+  font-size: 12px;
+  gap: 5px;
+  width: 100%;
+  height: calc(100% / 3);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #0000001f;
+  padding: 11px;
+  cursor: pointer;
+}
+
+.disabledRow {
+  font-size: 14px;
+  background-color: #f4f4f4;
+  cursor: default !important;
+}
+
+.disabledRow svg {
+  color: #696969;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+}
+
+.userOptions li:nth-child(3) {
+  border-bottom: none;
+  color: #d63031;
+}
+
+.userOptions li:hover {
+  background-color: #f9f9f9;
+}
+
+.activeItem {
+  color: #28a745;
+}
+
+@media (min-width: 800px) {
+  .hamburger {
+    display: none;
+  }
+
+  .navbar {
+    height: 74px;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  .logo {
+    width: 15%;
+    display: flex;
+    flex: 0 0 auto;
+  }
+
+  .navLinks {
+    background: transparent;
+    position: static;
+    z-index: 0;
+    height: 100%;
+    flex-direction: row;
+    display: flex;
+    gap: 20px;
+    flex: 0 0 499;
+    align-items: center;
+    padding: 0px;
+    border-radius: 0px;
+    margin-right: 20px;
+  }
+
+  .navLinks p {
+    padding-bottom: 0px;
+  }
+
+  .mobileLoginBtn {
+    display: none;
+  }
+
+  .authButton {
+    width: fit-content;
+    flex: 0 0.5 auto;
+  }
+
+  .loginBtn {
+    max-width: 166px;
+    height: 44px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 8px;
+    color: #28a745;
+    border: 2px solid #28a745;
+    border-radius: 8px;
+    font-weight: 200;
+    font-size: 16px;
+  }
+  .overlay {
+    display: none;
+  }
+  .userBtn {
+    font-size: 18px;
+  }
+  .userBtn img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .userOptions {
+    width: 200px;
+    height: 152px;
+    right: -17px;
+  }
+
+  .userOptions li {
+    font-size: 14px;
+    gap: 10px;
+  }
+
+  .disabledRow {
+    font-size: 16px !important;
+  }
+}

@@ -1,0 +1,168 @@
+.container {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.profileInfo {
+  width: 100%;
+  border: 1px solid #00000033;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.profileInfo h3 {
+  font-weight: 200;
+  font-size: 16px;
+}
+
+.profileDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.profileItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.profileItem p {
+  font-weight: 150;
+  font-size: 14px;
+}
+
+.profileItem span {
+  font-size: 14px;
+}
+
+.editButton {
+  color: #009eca;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.editForm {
+  display: flex;
+  gap: 20px;
+}
+
+.editForm input {
+  /* max-width: 255px; */
+  padding: 10px;
+  border: 1px solid #00000080;
+  border-radius: 5px;
+}
+
+.editForm button {
+  max-width: 122px;
+  padding: 10px 30px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profileHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 200;
+  font-size: 16px;
+}
+
+.extraForm {
+  flex-direction: column;
+}
+
+.extraForm input {
+  width: 100%;
+}
+
+.extraForm .buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.extraForm .buttons button {
+  width: 50%;
+}
+
+.buttons button:last-child {
+  background-color: #fff;
+  color: #28a745;
+  border: 2px solid #28a745;
+}
+
+.genderSelector {
+  appearance: none;
+  background-color: #fff;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #00000080;
+  border-radius: 5px;
+}
+
+.genderSelector::before {
+  padding: 10px;
+}
+
+.datePicker {
+  z-index: 101;
+}
+
+@media (min-width: 800px) {
+  .profileInfo {
+    max-width: 872px;
+    gap: 20px;
+  }
+
+  .editButton {
+    padding-right: 70px;
+  }
+
+  .profileDetails {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .profileItem {
+    width: fit-content;
+    gap: 20px;
+  }
+  .userInfo .profileItem {
+    width: 40%;
+    justify-content: flex-start;
+  }
+
+  .extraForm {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .extraForm input,
+  .genderSelector {
+    max-width: 255px;
+  }
+
+  .profileHeader {
+    padding-bottom: 10px;
+  }
+
+  .extraForm .buttons {
+    justify-content: flex-end;
+    gap: 20px;
+    border-top: 1px solid #00000033;
+    padding-top: 10px;
+  }
+}

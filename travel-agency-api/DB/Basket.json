@@ -1,0 +1,28 @@
+{
+  "id": "d4e5f678-90ab-cdef-1234-567890abcdef",
+  "origin": {
+    "persianName": "تهران",
+    "id": "1",
+    "name": "Tehran"
+  },
+  "destination": {
+    "id": "6",
+    "persianName": "هولر",
+    "name": "Hewler"
+  },
+  "startDate": "2025-11-15T00:00:00.000Z",
+  "endDate": "2025-11-22T00:00:00.000Z",
+  "title": "هولر",
+  "fleetVehicle": "airplane",
+  "price": 45000000,
+  "availableSeats": 14,
+  "capacity": 30,
+  "insurance": {
+    "exist": false
+  },
+  "options": [
+    "نهار و صبحانه",
+    "هتل پنج ستاره"
+  ],
+  "image": "http://localhost:6500/static/images/arbilTour.png"
+}

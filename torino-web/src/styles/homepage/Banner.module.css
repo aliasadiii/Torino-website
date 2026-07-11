@@ -1,0 +1,182 @@
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid #00000040;
+  border-radius: 10px;
+  margin: 100px auto 0;
+}
+
+.right {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #28a745;
+  border-radius: 10px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.info span {
+  font-weight: 150;
+  font-size: 32px;
+  color: #ffffff;
+}
+
+.info p {
+  font-weight: 400;
+  font-size: 40px;
+  color: #ffffff;
+}
+
+.info p span {
+  font-size: 48px;
+  color: #10411b;
+  font-weight: 400;
+}
+
+.imageWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.left {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.phone {
+  font-weight: 500;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #000000;
+}
+
+.moreInfo {
+  width: 175px;
+  height: 41px;
+  font-weight: 300;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #10411b;
+  border-radius: 9px;
+  color: #ffffff;
+}
+
+@media (min-width: 800px) and (max-width: 1200px) {
+  .right {
+    padding: 0 10px;
+  }
+  .info span {
+    font-size: 20px;
+  }
+
+  .info p {
+    font-size: 25px;
+  }
+
+  .info p span {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    /* width: 327px; */
+    height: 190px;
+  }
+
+  .right {
+    padding: 10px;
+    width: 100%;
+    height: 128px;
+    justify-content: flex-start;
+    position: relative;
+  }
+
+  .info span {
+    font-size: 13px;
+  }
+
+  .info p {
+    font-size: 18px;
+  }
+
+  .info p span {
+    font-size: 18px;
+  }
+
+  .imageWrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 195px;
+    height: 158px;
+  }
+
+  .imageWrapper img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .left {
+    width: 100%;
+    height: 62px;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .phone {
+    font-size: 20px;
+  }
+
+  .phone svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .moreInfo {
+    width: 136px;
+    height: 38px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 550px) and (max-width: 800px) {
+  .container {
+    width: 500px;
+  }
+
+  .info {
+    padding-right: 30px;
+  }
+
+  .info span {
+    font-size: 18px;
+  }
+
+  .info p {
+    font-size: 25px;
+  }
+
+  .info p span {
+    font-size: 25px;
+  }
+
+  .imageWrapper {
+    left: 50px;
+  }
+}
