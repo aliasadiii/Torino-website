@@ -74,7 +74,7 @@
     "title": "سلیمانیه",
     "fleetVehicle": "train",
     "price": 35000000,
-    "availableSeats": 31,
+    "availableSeats": 30,
     "capacity": 50,
     "insurance": {
       "exist": true,

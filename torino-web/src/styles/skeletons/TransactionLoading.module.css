@@ -1,0 +1,122 @@
+.container {
+  width: 100%;
+  height: calc(100vh - 330px);
+  overflow-x: auto;
+  border: 1px solid #00000033;
+  border-radius: 10px;
+  background-color: #fff;
+  margin-bottom: 30px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  direction: rtl;
+}
+
+.table th,
+.table td {
+  height: 56px;
+  padding: 0 16px;
+  text-align: right;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.table thead tr {
+  background-color: #f3f3f3;
+}
+
+.table th {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.table tbody tr {
+  border-top: 1px solid #0000001f;
+}
+
+.skeleton {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: 14px;
+  max-width: 100%;
+  border-radius: 6px;
+  background-color: #e7e7e7;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.65),
+    transparent
+  );
+  animation: shimmer 1.4s infinite;
+}
+
+.dateHeader {
+  width: 92px;
+}
+
+.amountHeader {
+  width: 86px;
+}
+
+.typeHeader {
+  width: 82px;
+}
+
+.orderHeader {
+  width: 82px;
+}
+
+.date {
+  width: 132px;
+}
+
+.amount {
+  width: 82px;
+}
+
+.type {
+  width: 142px;
+}
+
+.order {
+  width: 96px;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    padding: 0 12px;
+  }
+
+  .smallDisplay {
+    display: none;
+  }
+
+  .date {
+    width: 112px;
+  }
+
+  .amount {
+    width: 72px;
+  }
+
+  .order {
+    width: 82px;
+  }
+}

@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 import api from "@/configs/api";
 
@@ -14,9 +15,14 @@ export const metadata = {
 };
 
 async function Checkout() {
+  const cookieStore = await cookies();
+  const accessToken = cookieStore.get("accessToken")?.value;
+
+  if (!accessToken) {
+    redirect("/");
+  }
+
   try {
-    const cookieStore = await cookies();
-    const accessToken = cookieStore.get("accessToken")?.value;
     const res = await api.get("basket", {
       headers: { Authorization: `Bearer ${accessToken}` },
     });

@@ -1,9 +1,11 @@
+import { Suspense } from "react";
 import Image from "next/image";
 
 import SearchBox from "../modules/homepage/SearchBox";
 import ToursList from "../modules/homepage/ToursList";
 import Banner from "../modules/homepage/Banner";
 import WhyTorino from "../modules/homepage/WhyTorino";
+import ToursListSkeleton from "../modules/homepage/ToursListSkeleton";
 
 import styles from "@/styles/homepage/HomePage.module.css";
 import DiscountIcon from "../../../public/icons/DiscountIcon";
@@ -32,7 +34,9 @@ async function HomePage({ searchParams }) {
           </h1>
           <SearchBox searchParams={params} />
         </div>
-        <ToursList searchParams={params} />
+        <Suspense fallback={<ToursListSkeleton />}>
+          <ToursList searchParams={params} />
+        </Suspense>
         <Banner />
         <WhyTorino />
       </main>

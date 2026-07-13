@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import ActiveLink from "@/components/elements/ActiveLink";
 
 //style & icons

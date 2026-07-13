@@ -131,10 +131,11 @@
 
 @media (min-width: 800px) {
   .outsideContainer {
+    min-height: calc(100vh - 360px);
     border: 1px solid #00000010;
     background-color: #f3f3f3;
     width: 100%;
-    min-height: 100%;
+    /* min-height: 100%; */
     padding: 40px 0 100px 0;
   }
 

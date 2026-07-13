@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
 import styles from "@/styles/PaymentPage.module.css";
 
 export const metadata = {
@@ -7,6 +10,13 @@ export const metadata = {
 };
 
 async function PaymentPage({ searchParams }) {
+  const cookieStore = await cookies();
+  const accessToken = cookieStore.get("accessToken")?.value;
+
+  if (!accessToken) {
+    redirect("/");
+  }
+
   const params = await searchParams;
   const isSuccess = params?.status === "success";
 

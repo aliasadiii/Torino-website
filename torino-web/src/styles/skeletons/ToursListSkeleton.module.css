@@ -1,0 +1,122 @@
+.container {
+  width: 100%;
+  margin-top: 32px;
+}
+
+.heading {
+  width: 120px;
+  height: 28px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.toursContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.card {
+  overflow: hidden;
+  border: 1px solid #0000001f;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.image {
+  width: 100%;
+  height: 160px;
+  border-radius: 0;
+}
+
+.content {
+  padding: 12px;
+}
+
+.title {
+  width: 45%;
+  height: 20px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+}
+
+.description {
+  width: 80%;
+  height: 16px;
+  margin-bottom: 18px;
+  border-radius: 6px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid #0000001f;
+}
+
+.price {
+  width: 82px;
+  height: 20px;
+  border-radius: 6px;
+}
+
+.button {
+  width: 64px;
+  height: 30px;
+  border-radius: 6px;
+}
+
+.skeleton {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background-color: #e6e6e6;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.65),
+    transparent
+  );
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 1200px) {
+  .toursContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .toursContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    margin-top: 24px;
+  }
+
+  .toursContainer {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .image {
+    height: 170px;
+  }
+}

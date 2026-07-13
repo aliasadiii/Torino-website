@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: tour.title ,
+    title: tour.title,
     description:
       tour.description?.slice(0, 160) || `جزئیات و رزرو ${tour.title}`,
     openGraph: {

@@ -1,0 +1,220 @@
+/* src/styles/ProfileLoading.module.css */
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.skeleton {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: #e9e9e9;
+}
+
+.skeleton::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  transform: translateX(100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.65) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.4s infinite;
+}
+
+/* ProfileInfo */
+
+.profileCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 115px;
+  padding: 24px 30px;
+  border: 1px solid #e4e4e4;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.profileDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.profileTitle {
+  width: 110px;
+  height: 16px;
+}
+
+.profileValue {
+  width: 165px;
+  height: 20px;
+}
+
+.actionButton {
+  width: 115px;
+  height: 16px;
+  border-radius: 7px;
+}
+
+.profileEmail {
+  display: flex;
+  gap: 20px;
+  align-content: end;
+}
+
+/* UserInfo and UserBankInfo */
+
+.card {
+  padding: 24px 30px;
+  border: 1px solid #e4e4e4;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.sectionTitle {
+  width: 125px;
+  height: 20px;
+}
+
+.editButton {
+  width: 85px;
+  height: 18px;
+}
+
+.fieldsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 40px;
+}
+
+.bankGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 40px;
+}
+
+.field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fieldLabel {
+  width: 75px;
+  height: 13px;
+}
+
+.fieldValue {
+  width: min(100%, 150px);
+  height: 18px;
+}
+
+.accountValue {
+  width: min(100%, 190px);
+  height: 18px;
+}
+
+.shabaValue {
+  width: min(100%, 270px);
+  height: 18px;
+}
+
+.screenReaderText {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  white-space: nowrap;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+}
+
+/* Animation */
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .profileCard,
+  .card {
+    padding: 22px;
+  }
+
+  .profileEmail {
+    flex-direction: column;
+  }
+
+  .fieldsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .profileCard {
+    min-height: 105px;
+    padding: 18px;
+  }
+
+  .card {
+    padding: 20px 18px;
+  }
+
+  .cardHeader {
+    margin-bottom: 24px;
+  }
+
+  .fieldsGrid,
+  .bankGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .profileTitle {
+    width: 90px;
+  }
+
+  .profileValue {
+    width: 130px;
+  }
+
+  .actionButton {
+    width: 85px;
+  }
+
+  .shabaValue {
+    width: min(100%, 240px);
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after {
+    animation: none;
+  }
+}
