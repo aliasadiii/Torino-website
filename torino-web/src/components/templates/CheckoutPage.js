@@ -6,7 +6,6 @@ import { useMutation } from "@tanstack/react-query";
 import { DatePicker } from "zaman";
 import toast from "react-hot-toast";
 
-import { useGetUserData } from "@/services/queries";
 import { checkoutOrder } from "@/services/tour";
 import { formatDate } from "@/utils/formatDate";
 import { dateDetails } from "@/utils/tour";
@@ -14,27 +13,36 @@ import { dateDetails } from "@/utils/tour";
 import styles from "@/styles/CheckoutPage.module.css";
 import ProfileIcon from "../../../public/icons/ProfileIcon";
 
-function CheckoutPage({ tour }) {
+function CheckoutPage({ tour, userData }) {
   const router = useRouter();
+
   const { price, title, startDate, endDate } = tour;
   const { durationText } = dateDetails(startDate, endDate);
 
-  const { data } = useGetUserData();
-  const user = data?.user ?? {};
-
-  const { register, control, handleSubmit } = useForm();
+  const { register, control, handleSubmit } = useForm({
+    defaultValues: {
+      firstName: userData?.firstName ?? "",
+      lastName: userData?.lastName ?? "",
+      nationalCode: userData?.nationalCode ?? "",
+      gender: userData?.gender ?? "",
+      birthDate: userData?.birthDate
+        ? new Date(userData?.birthDate)
+        : undefined,
+    },
+  });
 
   const { mutate, isPending } = useMutation({ mutationFn: checkoutOrder });
 
-  const submitHandler = async (data) => {
+  const submitHandler = async (formData) => {
+    console.log(formData);
     mutate(
       {
-        ...data,
-        fullName: `${data.firstName} ${data.lastName}`,
-        birthDate: formatDate(data?.birthDate),
+        ...formData,
+        fullName: `${formData.firstName} ${formData.lastName}`,
+        birthDate: formatDate(formData?.birthDate),
       },
       {
-        onSuccess: (data) => {
+        onSuccess: () => {
           toast.success("ارسال به درگاه پرداخت...");
           // router.push("/payment?status=success");
           setTimeout(() => {
@@ -48,6 +56,7 @@ function CheckoutPage({ tour }) {
           toast.error(
             "خرید با خطا مواجه شد لطفا بعد از چند دقیقه دوباره تلاش کنید !",
           );
+          console.log(error);
         },
       },
     );
@@ -65,29 +74,19 @@ function CheckoutPage({ tour }) {
             <ProfileIcon />
             <span>مشخصات مسافر</span>
           </h3>
-          <input
-            type="text"
-            placeholder="نام"
-            defaultValue={user?.firstName || ""}
-            {...register("firstName")}
-          />
+          <input type="text" placeholder="نام" {...register("firstName")} />
           <input
             type="text"
             placeholder="نام خانوادگی"
-            defaultValue={user?.lastName || ""}
             {...register("lastName")}
           />
           <input
             type="number"
             placeholder="کدملی"
-            defaultValue={user?.nationalCode || ""}
             {...register("nationalCode")}
           />
-          <select
-            className={styles.genderSelector}
-            {...register("gender")}
-            defaultValue={user?.gender}
-          >
+          <select className={styles.genderSelector} {...register("gender")}>
+            <option value="">جنسیت</option>
             <option value="male">مرد</option>
             <option value="female">زن</option>
           </select>
@@ -101,9 +100,7 @@ function CheckoutPage({ tour }) {
                 inputAttributes={{
                   placeholder: `تاریخ تولد`,
                 }}
-                defaultValue={
-                  user?.birthDate ? new Date(user.birthDate) : value
-                }
+                defaultValue={value}
                 accentColor="#28a745"
                 customShowDateFormat="DD MMMM YYYY"
                 round="x2"

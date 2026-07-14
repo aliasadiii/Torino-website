@@ -26,7 +26,12 @@ async function Checkout() {
     const res = await api.get("basket", {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
-    return <CheckoutPage tour={res?.data} />;
+
+    const userRes = await api.get("user/profile", {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+
+    return <CheckoutPage tour={res?.data} userData={userRes?.data} />;
   } catch (error) {
     const status = error?.response?.status;
 

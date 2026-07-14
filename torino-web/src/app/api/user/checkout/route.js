@@ -27,6 +27,7 @@ export async function POST(req) {
 
       //getting data from request
       const reqBody = await req.json();
+      console.log(reqBody);
 
       //sending data to api
       const res = await api.post("order", reqBody, {
