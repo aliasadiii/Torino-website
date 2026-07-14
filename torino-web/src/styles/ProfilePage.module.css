@@ -61,12 +61,19 @@
 
 .editForm button {
   max-width: 122px;
+  max-height: 45px;
   padding: 10px 30px;
   background-color: #28a745;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.errorText {
+  margin-top: 4px;
+  color: #d32f2f;
+  font-size: 12px;
 }
 
 .profileHeader {
@@ -118,6 +125,10 @@
   z-index: 101;
 }
 
+.errorsBox {
+  width: 100%;
+}
+
 @media (min-width: 800px) {
   .profileInfo {
     max-width: 872px;
@@ -152,7 +163,7 @@
 
   .extraForm input,
   .genderSelector {
-    max-width: 255px;
+    width: 255px;
   }
 
   .profileHeader {
@@ -164,5 +175,39 @@
     gap: 20px;
     border-top: 1px solid #00000033;
     padding-top: 10px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1150px) {
+  .extraForm {
+    justify-content: center;
+  }
+
+  .extraForm input,
+  .genderSelector {
+    width: 180px;
+  }
+
+  .extraForm .buttons {
+    justify-content: center;
+  }
+
+  .userInfo .profileItem {
+    width: fit-content;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1000px) {
+  .extraForm {
+    justify-content: center;
+  }
+
+  .extraForm input,
+  .genderSelector {
+    width: 250px;
+  }
+
+  .extraForm .buttons {
+    justify-content: center;
   }
 }

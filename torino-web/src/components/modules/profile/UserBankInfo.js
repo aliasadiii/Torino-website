@@ -3,17 +3,33 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import { userBankInfoSchema } from "@/schema/form";
 
 import styles from "@/styles/ProfilePage.module.css";
 import EditIcon from "../../../../public/icons/EditIcon";
 
 function UserBankInfo({ user, sendUserMutation }) {
   const [edit, setEdit] = useState(false);
-  const { register, handleSubmit, reset, setError } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(userBankInfoSchema),
+  });
 
   const submitHandler = async (data) => {
     sendUserMutation.mutate(
-      { payment: { ...data } },
+      {
+        payment: {
+          shaba_code: data.shaba_code?.trim().toUpperCase() || "",
+          debitCard_code: data.debitCard_code?.trim() || "",
+          accountIdentifier: data.accountIdentifier?.trim() || "",
+        },
+      },
       {
         onSuccess: () => {
           setEdit(false);
@@ -41,7 +57,6 @@ function UserBankInfo({ user, sendUserMutation }) {
           <h3 className={styles.profileHeader}>ویرایش اطلاعات حساب بانکی</h3>
           <input
             type="text"
-            inputMode="numeric"
             placeholder="شماره شبا، مانند IR..."
             defaultValue={user?.payment?.shaba_code || ""}
             {...register("shaba_code")}
@@ -61,6 +76,24 @@ function UserBankInfo({ user, sendUserMutation }) {
             defaultValue={user?.payment?.accountIdentifier || ""}
             {...register("accountIdentifier")}
           />
+
+          {errors && (
+            <div className={styles.errorsBox}>
+              {errors.shaba_code && (
+                <p className={styles.errorText}>{errors.shaba_code.message}</p>
+              )}
+              {errors.debitCard_code && (
+                <p className={styles.errorText}>
+                  {errors.debitCard_code.message}
+                </p>
+              )}
+              {errors.accountIdentifier && (
+                <p className={styles.errorText}>
+                  {errors.accountIdentifier.message}
+                </p>
+              )}
+            </div>
+          )}
 
           <div className={styles.buttons}>
             <button type="submit" disabled={sendUserMutation.isPending}>

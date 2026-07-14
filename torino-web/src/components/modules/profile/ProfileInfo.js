@@ -1,18 +1,28 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 
-import EditIcon from "../../../../public/icons/EditIcon";
+import { profileInfoSchema } from "@/schema/form";
 
 import styles from "@/styles/ProfilePage.module.css";
+import EditIcon from "../../../../public/icons/EditIcon";
 
 function ProfileInfo({ user, sendUserMutation }) {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(profileInfoSchema),
+  });
+
   const [edit, setEdit] = useState(false);
 
   const submitHandler = async (email) => {
-    if (!email.email) {
+    if (email.email === user.email) {
       setEdit(false);
       return;
     }
@@ -40,13 +50,19 @@ function ProfileInfo({ user, sendUserMutation }) {
           <form
             className={styles.editForm}
             onSubmit={handleSubmit(submitHandler)}
+            noValidate
           >
-            <input
-              type="email"
-              placeholder="آدرس ایمیل"
-              defaultValue={user?.email || ""}
-              {...register("email")}
-            />
+            <div>
+              <input
+                type="email"
+                placeholder="آدرس ایمیل"
+                defaultValue={user?.email || ""}
+                {...register("email")}
+              />
+              {errors.email && (
+                <p className={styles.errorText}>{errors.email?.message}</p>
+              )}
+            </div>
             <button type="submit" disabled={sendUserMutation.isPending}>
               تایید
             </button>

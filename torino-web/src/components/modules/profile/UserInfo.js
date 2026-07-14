@@ -4,7 +4,9 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { DatePicker } from "zaman";
 import toast from "react-hot-toast";
+import { yupResolver } from "@hookform/resolvers/yup";
 
+import { userInfoSchema } from "@/schema/form";
 import { convertToPersianDateTime, formatDate } from "@/utils/formatDate";
 
 import styles from "@/styles/ProfilePage.module.css";
@@ -12,7 +14,17 @@ import EditIcon from "../../../../public/icons/EditIcon";
 
 function UserInfo({ user, sendUserMutation }) {
   const [edit, setEdit] = useState(false);
-  const { register, control, handleSubmit, reset } = useForm();
+  const {
+    register,
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(userInfoSchema),
+  });
+
+  console.log(errors);
 
   const submitHandler = async (data) => {
     const payload = {
@@ -45,6 +57,7 @@ function UserInfo({ user, sendUserMutation }) {
           onSubmit={handleSubmit(submitHandler)}
         >
           <h3 className={styles.profileHeader}>ویرایش اطلاعات شخصی</h3>
+
           <input
             type="text"
             placeholder="نام"
@@ -58,7 +71,7 @@ function UserInfo({ user, sendUserMutation }) {
             {...register("lastName")}
           />
           <input
-            type="number"
+            type="text"
             placeholder="کدملی"
             defaultValue={user?.nationalCode || ""}
             {...register("nationalCode")}
@@ -68,6 +81,7 @@ function UserInfo({ user, sendUserMutation }) {
             {...register("gender")}
             defaultValue={user?.gender}
           >
+            <option value="">انتخاب جنسیت</option>
             <option value="male">مرد</option>
             <option value="female">زن</option>
           </select>
@@ -91,6 +105,28 @@ function UserInfo({ user, sendUserMutation }) {
               />
             )}
           />
+
+          {errors && (
+            <div className={styles.errorsBox}>
+              {errors.firstName && (
+                <p className={styles.errorText}>{errors.firstName.message}</p>
+              )}
+              {errors.lastName && (
+                <p className={styles.errorText}>{errors.lastName.message}</p>
+              )}
+              {errors.nationalCode && (
+                <p className={styles.errorText}>
+                  {errors.nationalCode.message}
+                </p>
+              )}
+              {errors.gender && (
+                <p className={styles.errorText}>{errors.gender.message}</p>
+              )}
+              {errors.birthDate && (
+                <p className={styles.errorText}>{errors.birthDate.message}</p>
+              )}
+            </div>
+          )}
 
           <div className={styles.buttons}>
             <button type="submit" disabled={sendUserMutation.isPending}>
