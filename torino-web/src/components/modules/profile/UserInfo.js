@@ -24,8 +24,6 @@ function UserInfo({ user, sendUserMutation }) {
     resolver: yupResolver(userInfoSchema),
   });
 
-  console.log(errors);
-
   const submitHandler = async (data) => {
     const payload = {
       ...data,

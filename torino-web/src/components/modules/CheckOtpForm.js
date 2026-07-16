@@ -78,7 +78,6 @@ function CheckOtpForm({ setStep, phone, setPhone, sendOtpMutation }) {
   const resendOtpHandler = () => {
     setTimer(90);
     setOtp("");
-    console.log(phone);
     sendOtpMutation.mutate(phone, {
       onSuccess: (data) => {
         console.log(data);

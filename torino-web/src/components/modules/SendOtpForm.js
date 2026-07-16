@@ -23,6 +23,7 @@ function SendOtpForm({ setStep, setPhone, phone, sendOtpMutation }) {
   const closeModal = (event) => {
     if (event.target === event.currentTarget) {
       router.replace(pathname);
+      setPhone("");
     }
   };
 

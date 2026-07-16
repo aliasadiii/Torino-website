@@ -22,7 +22,7 @@ function SearchBox({ searchParams }) {
   const originWrapperRef = useRef(null);
   const destinationWrapperRef = useRef(null);
 
-  const { setValue, handleSubmit, watch, control } = useForm({
+  const { setValue, handleSubmit, watch, control, reset } = useForm({
     defaultValues: {
       originId: "",
       destinationId: "",
@@ -32,6 +32,32 @@ function SearchBox({ searchParams }) {
       },
     },
   });
+
+  //checking filter
+  const originId = watch("originId");
+  const destinationId = watch("destinationId");
+  const date = watch("date");
+
+  const hasFilters = Boolean(
+    originId || destinationId || date?.startDate || date?.endDate,
+  );
+
+  //clear filter function
+  const clearHandler = () => {
+    reset({
+      originId: "",
+      destinationId: "",
+      date: {
+        startDate: null,
+        endDate: null,
+      },
+    });
+
+    setOriginText("");
+    setDestinationText("");
+    setOpenBox(null);
+    router.push("/");
+  };
 
   //closing dropdown action
   useEffect(() => {
@@ -102,9 +128,7 @@ function SearchBox({ searchParams }) {
     location.persianName.includes(destinationText),
   );
 
-  const originId = watch("originId");
-  const destinationId = watch("destinationId");
-
+  //select city from dropdown
   const handleSelectLocation = (type, location) => {
     if (type === "origin") {
       setValue("originId", location.id);
@@ -116,6 +140,7 @@ function SearchBox({ searchParams }) {
     setOpenBox(null);
   };
 
+  //search function
   const submitHandler = async (data) => {
     const query = new URLSearchParams();
 
@@ -234,6 +259,7 @@ function SearchBox({ searchParams }) {
                   range
                   from={from}
                   to={to}
+                  defaultValue={from ? from : new Date()}
                   onChange={(e) =>
                     onChange({
                       startDate: e?.from ? new Date(e.from) : null,
@@ -252,8 +278,25 @@ function SearchBox({ searchParams }) {
             }}
           />
         </div>
+        <div className={styles.buttons}>
+          <button
+            type="submit"
+            className={`${styles.searchBtn} + ${hasFilters && styles.searchCloseBtn}`}
+          >
+            جستجو
+          </button>
 
-        <button type="submit">جستجو</button>
+          {hasFilters && (
+            <button
+              type="button"
+              onClick={clearHandler}
+              aria-label="حذف فیلترها"
+              className={styles.clearBtn}
+            >
+              ✕
+            </button>
+          )}
+        </div>
       </div>
     </form>
   );

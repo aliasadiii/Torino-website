@@ -34,7 +34,6 @@ function CheckoutPage({ tour, userData }) {
   const { mutate, isPending } = useMutation({ mutationFn: checkoutOrder });
 
   const submitHandler = async (formData) => {
-    console.log(formData);
     mutate(
       {
         ...formData,
@@ -56,7 +55,7 @@ function CheckoutPage({ tour, userData }) {
           toast.error(
             "خرید با خطا مواجه شد لطفا بعد از چند دقیقه دوباره تلاش کنید !",
           );
-          console.log(error);
+          // console.log(error);
         },
       },
     );

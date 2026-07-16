@@ -110,9 +110,7 @@ function Header() {
         </div>
 
         <ul className={`${styles.navLinks} ${isOpen ? styles.active : ""}`}>
-          <li
-          // className={styles.activeLink}
-          >
+          <li>
             <ActiveLink
               href="/"
               activeClassName={styles.activeItem}
@@ -224,7 +222,7 @@ function Header() {
 
       {!isLoggedIn && !isPending && (
         <Suspense fallback={null}>
-          <AuthModal>
+          <AuthModal setStep={setStep} setPhone={setPhone}>
             {step === "one" && (
               <SendOtpForm
                 setStep={setStep}

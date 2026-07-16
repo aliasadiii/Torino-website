@@ -3,7 +3,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import styles from "@/styles/AuthModal.module.css";
 
-function AuthModal({ children }) {
+function AuthModal({ children, setStep, setPhone }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -13,6 +13,8 @@ function AuthModal({ children }) {
   const closeModal = (event) => {
     if (event.target === event.currentTarget) {
       router.replace(pathname);
+      setStep("one");
+      setPhone("");
     }
   };
 
