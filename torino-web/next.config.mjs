@@ -5,6 +5,17 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
+        protocol: "https",
+        hostname: "torino-api-m6de.onrender.com",
+        pathname: "/static/images/**",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "10000",
+        pathname: "/static/images/**",
+      },
+      {
         protocol: "http",
         hostname: "localhost",
         port: "6500",
