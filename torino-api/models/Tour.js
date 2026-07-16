@@ -35,7 +35,7 @@ const getTourById = async (id) => {
   const tours = await readData(TOURS_FILE);
   let data = await tours.find((tour) => tour.id === id);
   if (data) {
-    data.image = `http://localhost:${PORT}${data?.image}`;
+    data.image = getImageUrl(data.image);
   }
   // console.log(data, 'test');
   return data;
