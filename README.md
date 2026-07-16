@@ -101,10 +101,9 @@ torino-web
 ### 1. Environment Setup
 Before running the project, you need to set up your environment variables:
 
-- Go to the torino-web directory.
+- Go to the torino-web and torino-api directory.
 - Create a .env.local file based on .env.example if needed.
 - Set the API base URL to your local or production backend address.
-- Use this backend address for local development: http://localhost:6500/
 
 ### 2. Installation & Run
 To get the project up and running, follow these steps:
